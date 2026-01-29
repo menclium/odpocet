@@ -135,15 +135,11 @@
                 </div>
                 <div class="p-4 rounded-2xl section-box">
                     <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč nemůžu kliknout na "Padla"?</h4>
-                    <p class="opacity-70">Protože "Padla" není přání, ale krutá matematika. Aplikace vezme tvůj <strong>Začátek</strong>, přičte k tomu <strong>Pauzu</strong> (kterou stejně nestíháš) a <strong>Pracovní dobu</strong>. Výsledek je čas, kdy tě systém milostivě propustí.</p>
-                </div>
-                <div class="p-4 rounded-2xl section-box">
-                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč se mi mění pauza?</h4>
-                    <p class="opacity-70">Snažíme se tě chránit před vlastní hloupostí. Pokud si nastavíš pauzu na 3:00 ráno, když v práci smrdíš od osmi, aplikace ji posune tak, aby dávala aspoň trochu smysl. Není zač.</p>
+                    <p class="opacity-70">Protože "Padla" není přání, ale krutá matematika. Aplikace vezme tvůj <strong>Začátek</strong>, přičte k tomu <strong>Pauzu</strong> a <strong>Pracovní dobu</strong>. Výsledek je čas, kdy tě systém milostivě propustí.</p>
                 </div>
                 <div class="p-4 rounded-2xl section-box">
                     <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Musím to nastavovat znovu?</h4>
-                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Pokud teda nesmažeš historii nebo ti IT nešlohne počítač. Všechno se ukládá lokálně.</p>
+                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Všechno se ukládá lokálně.</p>
                 </div>
             </div>
             <button onclick="closeFaq()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-black rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20">Zpět do otroctví</button>
@@ -254,59 +250,118 @@
     </div>
 
     <script>
-        const db_early = [
-            "Pondělí je jen způsob, jakým nám vesmír říká, že nás nenávidí.", 
-            "Každá cesta začíná kávovarem. Tvůj právě dovařil.",
-            "Už jen 120 hodin čistého utrpení. To dáš, hrdino.",
-            "Budík ráno zněl jako siréna k evakuaci z tvého vlastního života.",
-            "Vesmír vznikl velkým třeskem, tvůj pracovní týden velkým povzdechem.",
-            "Statisticky vzato, teď bys měl být nejvíc produktivní. Realita je jiná.",
-            "Tvůj šéf si právě koupil nové auto. Ty máš tenhle odpočet.",
-            "V pondělí ráno vypadáš přesně tak, jak se cítíš. Hrozně.",
-            "Kdo vymyslel pondělí, zaslouží vlažné pivo do konce věků.",
-            "Pondělí je jako první kapitola špatné detektivky. Chceš to zavřít.",
-            "Úterý je v podstatě pondělí, které se jen lépe převléklo.",
-            "Pracovní nadšení na bodu mrazu. Tekutý dusík je proti tobě horký.",
-            "Tvůj Outlook právě oznámil 42 nových důvodů, proč plakat.",
-            "Snažíš se vypadat zaneprázdněně? Děláš to dobře.",
-            "Zatím to vypadá na dlouhý týden. Velmi dlouhý."
-        ];
-
-        const db_middle = [
-            "Středa – den, kdy už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
-            "Půlka týdne. Tvá duše už opustila tělo a čeká u nejbližšího výčepu.", 
-            "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Brambora.",
-            "Hrb středy je před tebou. Přelez ho, nebo se pod ním plaz.",
-            "Dneska už je v podstatě malý pátek. Kdo tomu věří, pije víc.",
-            "Excelovské tabulky se ti začínají propisovat na sítnici.",
-            "Právě jsi v polovině cesty k zapomnění. Gratulujeme.",
-            "Čtvrtek je nejlepší den. Už to není středa, ale ještě ne pátek.",
-            "Někde ve světě už je víkend. Škoda, že ne tady.",
-            "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
-            "Už cítíš tu vůni svobody? Ne, to je jen mikrovlnka v kuchyňce.",
-            "Dneska už se nic zásadního nestane. Pokud se neschováš pod stůl.",
-            "Zítra touto dobou už budeš mít v ruce první drink. Možná.",
-            "Středa je jako vteřinové lepidlo. Drží tě v práci a nepustí.",
-            "Tvé tělo je v kanceláři, ale hlava je na pláži v Karibiku."
-        ];
-
-        const db_close = [
-            "Cílová rovinka! Už slyšíš to slastné cinkání vychlazených půllitrů?", 
-            "Poslední e-mail a pak zmiz jako pára nad hrncem. Nikdo si nevšimne.", 
-            "Už jsi jednou nohou v posteli a druhou v oblíbeném baru.",
-            "Páteční odpoledne: Fyzika v práci přestává fungovat, čas se natahuje.",
-            "Dělej, že píšeš zprávu. Stačí pět minut a můžeš běžet.",
-            "Odchod za 3... 2... 1... jo, ještě ne. Počkej ještě chvíli.",
-            "Tvoje produktivita klesla na úroveň pokojové rostliny.",
-            "Víš, co je nejlepší na pátku? Že zítra je sobota.",
-            "Právě jsi vyhrál bitvu s týdnem. Válka ale pokračuje v pondělí.",
-            "Je čas přepnout mozek na režim 'Nekontaktovat'.",
-            "Právě jsi odeslal poslední smysluplnou věc tohoto týdne.",
-            "Už jen pár minut. Tvůj počítač už taky chce spát.",
-            "Pátek je jediný den, kdy ti i dopravní zácpa přijde snesitelná.",
-            "Gratulujeme, přežil jsi další týden korporátního pekla.",
-            "Běž domů. Teď hned. Nikdo tě tu nedrží (kromě hypotéky)."
-        ];
+        const dailyQuotes = {
+            1: [ // Pondělí
+                "Vítej v očistci. Užij si těch 120 hodin čisté marnosti.",
+                "Pondělí je jen způsob, jakým ti vesmír plive do tváře.",
+                "Tvá motivace je mrtvá. Pohřbil ji ranní budík.",
+                "Doufal jsi, že se ráno neprobudíš? Smůla. Hypotéka nepočká.",
+                "Už jen pět dní sebeklamu, že tvoje práce má smysl.",
+                "Statisticky v pondělí nejvíc lidí infarktuje. Tak se snaž.",
+                "Tvé tělo je v kanceláři, tvá důstojnost zůstala pod peřinou.",
+                "Pondělí je jako špatný horor. A ty jsi ta postava, co umře první.",
+                "Už jsi zkusil vypnout a zapnout svůj život? Ne? Škoda.",
+                "Tvůj šéf si právě koupil jachtu. Ty máš tenhle blbej odpočet.",
+                "Dívej se na tu vteřinovku. To je tvůj život, jak mizí v kanále.",
+                "Pondělí ráno vypadáš přesně tak, jak se cítíš. Tragicky.",
+                "Zase tady smrdíš. A budeš tu smrdět až do pátku.",
+                "Tvá káva je studená jako tvé vyhlídky na povýšení.",
+                "Pracovní nadšení? To jsi nechal v roce 2015, ne?",
+                "Dalších 8 hodin předstírání, že nejsi úplně vyhořelý.",
+                "První e-mail a už chceš někoho praštit. Dobrý start.",
+                "Kdo vymyslel pondělí, měl by dostat Nobelovku za sadismus.",
+                "Jsi jen kolečko v rezavém stroji. A dneska to sakra skřípe.",
+                "Víkend je v nedohlednu. Možná ani neexistuje."
+            ],
+            2: [ // Úterý
+                "Úterý je jen pondělí, kterému došel makeup.",
+                "Stále jsi tady? Fascinující, kolik toho tvá duše vydrží.",
+                "Druhý den utrpení. A ty si pořád myslíš, že to dáš.",
+                "Úterý je nejobyčejnější den. Nikdo ho nemá rád, nikdo ho neřeší.",
+                "Tvá produktivita klesá rychleji než hodnota rublu.",
+                "Gratulujeme, přežil jsi 24 hodin. Zbývá jich už jen nekonečno.",
+                "Excelovské tabulky ti už lezou i ušima. Dobře ti tak.",
+                "Snažíš se vypadat zaneprázdněně? Děláš to fakt blbě.",
+                "Kofein už nezabírá. Potřebuješ spíš elektrošoky.",
+                "Tvé sny o svobodě jsou stejně reálné jako tvůj bonus.",
+                "Úterý je den, kdy si uvědomíš, že tenhle týden fakt nekončí.",
+                "Zíráš do monitoru a monitor zírá do tvé prázdnoty.",
+                "Už jsi dneska ztratil veškerou naději, nebo ti ještě kousek zbyl?",
+                "Pracovní doba je jako vězení, ale bez té zajímavé stravy.",
+                "Tvé Outlook notifikace jsou jako výkřiky z pekla.",
+                "Úterý: Den, kdy i ten největší optimista začíná pít.",
+                "Vážně si myslíš, že ty reporty někdo čte? Jsi tak naivní.",
+                "Jsi v polovině cesty k ničemu. Užij si výhled.",
+                "Tvé IQ klesá s každým 'Jak jsme na tom?' od tvého šéfa.",
+                "Úterý je prostě jenom hnusný."
+            ],
+            3: [ // Středa
+                "Středa. Hrb týdne. A ty jsi ten, co ho musí přelézt.",
+                "Už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
+                "Půlka týdne. Tvá duše už čeká u nejbližšího výčepu.",
+                "Středa je jako vteřinové lepidlo. Drží tě v práci a nepustí.",
+                "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Celer.",
+                "Už jsi zvažoval, že se schováš v archivu a vylezeš v pátek?",
+                "Středa je malý pátek? To vymyslel někdo, kdo už úplně zešílel.",
+                "Dneska už je v podstatě jedno, co uděláš. Stejně to bude blbě.",
+                "Právě jsi v polovině cesty k zapomnění. Gratulujeme k ničemu.",
+                "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
+                "Hádanka: Má to dvě nohy a už to mělo být doma? Ty.",
+                "Středa je den, kdy začneš plánovat svou falešnou smrt.",
+                "Cítíš tu vůni? Ne, to není víkend. To je jen tvůj pot.",
+                "Zase ta samá mikrovlnka, zase ten samej hnusnej oběd.",
+                "Tvůj smysl života se právě zmenšil na velikost tvojí pauzy.",
+                "Středa je jako návštěva u zubaře. Musíš to vydržet, ale bolí to.",
+                "Tvá trpělivost je tenčí než papír v tiskárně.",
+                "Už jen dva dny a kousek. Pokud tě do té doby neklepne.",
+                "Práce tě osvobozuje? Ne, práce tě jen brutálně unavuje.",
+                "Středa. Zase o den blíž k hrobu."
+            ],
+            4: [ // Čtvrtek
+                "Čtvrtek. Už cítíš tu svobodu? Ne? To bude tím, že jsi pořád v práci.",
+                "Skoro tam jsi, ale tenhle den se potáhne jako tvůj workflow.",
+                "Čtvrtek je nejhorší lhář. Tváří se jako naděje, ale je to pořád dřina.",
+                "Už jen pár hodin předstírání zájmu. To zvládneš, lháři.",
+                "Tvá kreativita je na úrovni prázdné sešívačky.",
+                "Čtvrtek je den, kdy už se ani nesnažíš skrývat svůj odpor.",
+                "Někde ve světě už je víkend. Škoda, že ty jsi zrovna tady.",
+                "Dneska už se nic zásadního nestane. Pokud se neschováš pod stůl.",
+                "Zítra touto dobou už budeš mít v ruce drink. Snad se toho dožiješ.",
+                "Čtvrtek: Den, kdy i káva chutná po zoufalství.",
+                "Tvé tělo je v kanceláři, ale hlava už řeší, co si koupí v akci.",
+                "Už jsi dneska někoho poslal někam? Ještě je čas.",
+                "Čtvrtek je jako předkrm k jídlu, které ti stejně nebude chutnat.",
+                "Statisticky dneska uděláš nejvíc chyb. Tak do toho.",
+                "Tvá existence je redukována na čekání na pípnutí píchaček.",
+                "Už jen jeden den korporátního pekla. Pokud nepracuješ o víkendu.",
+                "Čtvrtek je den pro lidi, co už nemají co ztratit.",
+                "Tvůj mozek už dávno odešel na dovolenou. Zbytek těla ho následuje.",
+                "Právě jsi promrhal další hodinu života. A tvoje výplata? Pořád stejná.",
+                "Čtvrtek je jenom převlečená beznaděj."
+            ],
+            5: [ // Pátek
+                "Cílová rovinka, ty trosko! Už slyšíš to cinkání půllitrů?",
+                "Poslední e-mail a pak zmiz jako pára nad hrncem. Nikdo tě nechce.",
+                "Už jsi jednou nohou v baru a druhou v bezvědomí.",
+                "Páteční odpoledne: Fyzika přestává fungovat, čas se natahuje do nekonečna.",
+                "Dělej, že píšeš zprávu. Stačí deset minut a můžeš vypadnout.",
+                "Tvoje produktivita klesla na úroveň pokojové kytky. Možná i níž.",
+                "Víš, co je nejlepší na pátku? Že zítra tě nikdo neuvidí plakat v kanclu.",
+                "Právě jsi vyhrál bitvu s týdnem. Válka ale začíná v pondělí ráno.",
+                "Je čas přepnout mozek na režim 'Nekontaktovat, jsem mrtvej'.",
+                "Právě jsi odeslal poslední lež tohoto týdne. Gratulujeme.",
+                "Pátek je jediný den, kdy ti i tvůj šéf přijde skoro jako člověk.",
+                "Běž domů. Teď hned. Nikdo tě tu nedrží (kromě tvého dluhu na kreditce).",
+                "Páteční euforie je jen dočasná chemická reakce na blížící se konec.",
+                "Za hodinu už budeš vědět, proč piješ. Jako bys to nevěděl už teď.",
+                "Už jen pár vteřin a tvoje pracovní identita se rozplyne.",
+                "Pátek: Den, kdy se všichni tváří, že něco dělají, ale všichni jen scrolují.",
+                "Tvá svoboda má jméno: Sobota a Neděle. Škoda, že trvají asi pět minut.",
+                "Gratulujeme, přežil jsi další týden marnosti. Jsi hrdina, nebo blázen?",
+                "Pátek odpoledne je čas na hluboký nádech a ještě hlubší sklenici.",
+                "Padla! Zmiz, než si tě někdo všimne a dá ti práci navíc."
+            ]
+        };
 
         const db_weekend = [
             "Užívej si to, dokud můžeš. Pondělí se tiše plíží hned za rohem.", 
@@ -319,11 +374,9 @@
             "Nedělní oběd je bod zlomu. Pak už je to jen pád do pondělí.",
             "Jsi v bezpečné zóně. Práce sem nesmí.",
             "Tvé e-maily teď nikoho nezajímají. Ani tebe.",
-            "Užij si ten pocit, že nemusíš nastavovat budík. Pokud nemáš děti.",
-            "Sobota večer: Čas na regeneraci jater... nebo jejich další zátěž.",
             "Nedělní deprese je přirozený stav moderního člověka.",
             "Víkend je iluze, která trvá přesně 48 hodin. Čas běží.",
-            "Právě teď jsi nejšťastnější verze sebe sama."
+            "Právě teď jsi nejšťastnější verze sebe sama. To je smutný, co?"
         ];
 
         let currentMsgId = -1;
@@ -439,11 +492,11 @@
 
         function update() {
             const now = new Date();
-            const day = now.getDay();
+            const day = now.getDay(); // 0 (Sun) to 6 (Sat)
             const curSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
             const sEnd = timeToSeconds(config.workEnd);
             const isWeekend = (day === 0 || day === 6 || (day === 5 && curSec >= sEnd));
-            const messageSeed = Math.floor(Date.now() / 20000); // Rychlejší střídání hlášek (každých 20s)
+            const messageSeed = Math.floor(Date.now() / 15000); // Každých 15s nová hláška
             
             document.getElementById('day-badge').innerText = dayNames[day];
 
@@ -453,7 +506,7 @@
                 const rem = Math.floor((mon - now) / 1000);
                 document.getElementById('counter').innerText = formatTime(rem, 86400);
                 document.getElementById('total-seconds').innerText = `${rem.toLocaleString()} vteřin`;
-                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 4000); 
+                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 5000); 
                 document.getElementById('progress-bar').style.width = "100%";
             } else {
                 let rem = (5 - day) * (config.workHours * 3600);
@@ -474,8 +527,9 @@
                 document.getElementById('label-passed').innerText = `Stav: ${prog.toFixed(1)}%`;
                 document.getElementById('label-remaining').innerText = `Zbývá: ${(100-prog).toFixed(1)}%`;
                 
-                const pool = prog < 33 ? db_early : (prog < 75 ? db_middle : db_close);
-                setStatusMessage(pool[messageSeed % pool.length], (messageSeed % pool.length) + (prog < 33 ? 1000 : (prog < 75 ? 2000 : 3000)));
+                // Výběr hlášky podle dne v týdnu (1=Pon, 5=Pá)
+                const pool = dailyQuotes[day] || dailyQuotes[1];
+                setStatusMessage(pool[messageSeed % pool.length], (day * 100) + (messageSeed % pool.length));
             }
         }
 
@@ -491,15 +545,14 @@
 
         function shareDirect(platform) {
             const url = window.location.href;
-            const text = "Sleduj, kolik nám zbývá do konce pracovního týdne! 🍻";
+            const text = "Sleduj, jak mi život protéká mezi prsty v korporátu! 💀";
             
             switch(platform) {
                 case 'wa':
                     window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, '_blank');
                     break;
                 case 'mess':
-                    window.open(`fb-messenger://share/?link=${encodeURIComponent(url)}`, '_blank') || 
-                    showModal("Info", "Messenger vyžaduje mobilní aplikaci nebo přihlášení na webu.");
+                    window.open(`fb-messenger://share/?link=${encodeURIComponent(url)}`, '_blank');
                     break;
                 case 'tg':
                     window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
@@ -511,7 +564,7 @@
                     i.select();
                     document.execCommand("copy");
                     document.body.removeChild(i);
-                    showModal("Odkaz zkopírován", "Odkaz na aplikaci byl uložen do schránky.");
+                    showModal("Odkaz zkopírován", "Odkaz na tvoje utrpení byl uložen do schránky.");
                     break;
             }
         }
