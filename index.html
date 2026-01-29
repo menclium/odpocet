@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Svoboda na obzoru | Odpočet konce týdne</title>
+    <title>Odpočet do víkendu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -30,6 +30,7 @@
             margin: auto;
         }
 
+        /* Dark Mode styles */
         body.dark {
             background: radial-gradient(circle at top left, #1a202c, #111827);
             color: white;
@@ -43,12 +44,23 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        body.dark input, body.dark select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        body.dark .input-field {
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        /* Fix for select options in dark mode */
+        body.dark .input-field option {
+            background-color: #1f2937;
             color: white;
         }
+        body.dark .input-field:focus {
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.12);
+        }
 
+        /* Light Mode styles */
         body.light {
             background: radial-gradient(circle at top left, #f8fafc, #e2e8f0);
             color: #1e293b;
@@ -62,6 +74,20 @@
         body.light .section-box {
             background: rgba(0, 0, 0, 0.02);
             border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        body.light .input-field {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        body.light .input-field option {
+            background-color: white;
+            color: #1e293b;
+        }
+        body.light .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .counter-text {
@@ -83,6 +109,16 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 0.75rem;
         }
+
+        .input-field {
+            transition: all 0.2s ease-in-out;
+            appearance: none;
+        }
+        
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.5);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="p-2 sm:p-4">
@@ -91,27 +127,27 @@
     <div id="faq-modal" class="fixed inset-0 z-[60] flex items-center justify-center hidden backdrop-blur-md p-4 transition-all duration-300">
         <div class="glass w-full max-w-lg rounded-[2.5rem] p-6 sm:p-10 shadow-2xl flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-start mb-6">
-                <h3 class="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-emerald-500 text-center w-full">Průvodce přežitím</h3>
+                <h3 class="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-emerald-500 text-center w-full">Zbytečné dotazy</h3>
             </div>
             <div class="faq-scroll overflow-y-auto pr-2 space-y-4 text-sm sm:text-base leading-relaxed mb-6">
                 <div class="p-4 rounded-2xl section-box">
-                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Jak funguje odpočet?</h4>
-                    <p class="opacity-70">Aplikace počítá čistý čas zbývající do konce vašeho pracovního týdne (obvykle pátek "Padla"). Bere v úvahu vaše nastavení pracovní doby a pauzy na oběd.</p>
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">K čemu to jako je?</h4>
+                    <p class="opacity-70">Slouží to k tomu, abys mohl v reálném čase sledovat, jak ti život protéká mezi prsty, zatímco tvůj šéf bohatne. Počítáme vteřiny do momentu, kdy můžeš legálně prásknout dveřmi.</p>
                 </div>
                 <div class="p-4 rounded-2xl section-box">
-                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč nemůžu měnit "Konec (Padla)"?</h4>
-                    <p class="opacity-70">Tento čas se dopočítává automaticky. Systém vezme váš <strong>Začátek</strong>, připočte <strong>Čistou pracovní dobu</strong> a přidá k tomu délku <strong>Oběda</strong>. Tím získáte přesný čas, kdy můžete legálně zmizet.</p>
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč nemůžu kliknout na "Padla"?</h4>
+                    <p class="opacity-70">Protože "Padla" není přání, ale krutá matematika. Aplikace vezme tvůj <strong>Začátek</strong>, přičte k tomu <strong>Pauzu</strong> (kterou stejně nestíháš) a <strong>Pracovní dobu</strong>. Výsledek je čas, kdy tě systém milostivě propustí.</p>
                 </div>
                 <div class="p-4 rounded-2xl section-box">
-                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Omezení pauzy</h4>
-                    <p class="opacity-70">Pauza musí probíhat v rámci vaší pracovní doby (mezi Začátkem a Koncem). Pokud nastavíte čas mimo, aplikace jej automaticky upraví.</p>
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč se mi mění pauza?</h4>
+                    <p class="opacity-70">Snažíme se tě chránit před vlastní hloupostí. Pokud si nastavíš pauzu na 3:00 ráno, když v práci smrdíš od osmi, aplikace ji posune tak, aby dávala aspoň trochu smysl. Není zač.</p>
                 </div>
                 <div class="p-4 rounded-2xl section-box">
-                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Pamatují si nastavení?</h4>
-                    <p class="opacity-70">Ano, všechna vaše nastavení se ukládají lokálně ve vašem prohlížeči. Při příští návštěvě najdete své časy přesně tak, jak jste je nechali.</p>
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Musím to nastavovat znovu?</h4>
+                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Pokud teda nesmažeš historii nebo ti IT nešlohne počítač. Všechno se ukládá lokálně, my tvoje data nepotřebujeme – tvůj život je smutný dost i bez nás.</p>
                 </div>
             </div>
-            <button onclick="closeFaq()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-black rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20">Zpět do reality</button>
+            <button onclick="closeFaq()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-black rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20">Zpět do otroctví</button>
         </div>
     </div>
 
@@ -120,7 +156,7 @@
         <div class="glass rounded-[2.5rem] p-6 sm:p-10 text-center relative overflow-hidden">
             <!-- Header Actions -->
             <div class="flex justify-between items-center mb-8">
-                <button onclick="openFaq()" class="px-4 py-2 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/10 hover:bg-blue-500/20 font-bold text-[10px] tracking-widest transition-all uppercase">FAQ / Nápověda</button>
+                <button onclick="openFaq()" class="px-4 py-2 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/10 hover:bg-blue-500/20 font-bold text-[10px] tracking-widest transition-all uppercase">FAQ</button>
                 <button id="theme-toggle" class="p-2.5 rounded-xl bg-gray-500/5 hover:bg-gray-500/10 transition-colors">
                     <svg id="sun-icon" class="hidden w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
                     <svg id="moon-icon" class="hidden w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -129,8 +165,9 @@
 
             <!-- Header Info -->
             <div class="space-y-1 mb-6">
-                <h1 id="header-title" class="text-blue-500 font-black uppercase tracking-[0.3em] text-[10px] opacity-80">Cesta ke svobodě</h1>
-                <div id="day-badge" class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-500 text-[10px] font-black uppercase tracking-widest">...</div>
+                <h1 class="text-blue-500 font-black uppercase tracking-[0.2em] text-lg sm:text-xl">Odpočet do víkendu</h1>
+                <h2 id="header-title" class="text-gray-400 font-black uppercase tracking-[0.3em] text-[10px] opacity-80">Cesta ke svobodě</h2>
+                <div id="day-badge" class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-500 text-[10px] font-black uppercase tracking-widest mt-2">...</div>
             </div>
             
             <!-- Counter Display -->
@@ -155,33 +192,38 @@
 
             <!-- Settings Grid -->
             <div class="mt-10 pt-8 border-t border-gray-500/10">
-                <div class="grid grid-cols-2 gap-3 sm:gap-4 text-left">
-                    <div class="col-span-2 section-box p-4 rounded-2xl">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Čistá pracovní doba</label>
-                        <select id="workHours" class="w-full p-3 rounded-xl text-sm outline-none cursor-pointer font-bold"></select>
+                <div class="grid grid-cols-2 gap-4 sm:gap-6 text-left">
+                    <div class="col-span-2 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Čistá pracovní doba</label>
+                        <div class="relative">
+                            <select id="workHours" class="input-field w-full p-4 rounded-2xl text-base outline-none cursor-pointer font-bold pr-10"></select>
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-span-1 section-box p-4 rounded-2xl">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Začátek</label>
-                        <input type="time" id="workStart" class="w-full p-2 sm:p-3 rounded-xl text-sm outline-none font-bold">
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Začátek</label>
+                        <input type="time" id="workStart" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
                     </div>
-                    <div class="col-span-1 section-box p-4 rounded-2xl border-blue-500/20">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-blue-500 block mb-2">Konec (Padla)</label>
-                        <input type="time" id="workEnd" class="w-full p-2 sm:p-3 rounded-xl text-sm outline-none font-bold opacity-70 cursor-not-allowed" readonly>
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-blue-500 block mb-2 px-1">Konec (Padla)</label>
+                        <input type="time" id="workEnd" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold opacity-60 cursor-not-allowed bg-blue-500/5 !border-blue-500/20" readonly title="Vypočítáno automaticky">
                     </div>
-                    <div class="col-span-1 section-box p-4 rounded-2xl">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Oběd od</label>
-                        <input type="time" id="lunchStart" class="w-full p-2 sm:p-3 rounded-xl text-sm outline-none font-bold">
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Oběd od</label>
+                        <input type="time" id="lunchStart" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
                     </div>
-                    <div class="col-span-1 section-box p-4 rounded-2xl">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2">Oběd do</label>
-                        <input type="time" id="lunchEnd" class="w-full p-2 sm:p-3 rounded-xl text-sm outline-none font-bold">
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Oběd do</label>
+                        <input type="time" id="lunchEnd" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
                     </div>
                 </div>
             </div>
 
-            <!-- New Share Section -->
+            <!-- Share Section -->
             <div class="mt-8">
-                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-4">Sdílet svobodu s kolegy</label>
+                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-4">Sdílej odpočet s kolegy</label>
                 <div class="share-grid">
                     <!-- WhatsApp -->
                     <button onclick="shareDirect('wa')" class="p-3 bg-green-500/10 text-green-600 dark:text-green-400 rounded-2xl hover:bg-green-500/20 transition-all border border-green-500/5 group active:scale-90 flex flex-col items-center gap-1">
@@ -269,6 +311,7 @@
         window.closeFaq = () => document.getElementById('faq-modal').classList.add('hidden');
 
         function timeToSeconds(t) { 
+            if (!t) return 0;
             const [h, m] = t.split(':').map(Number); 
             return h * 3600 + m * 60; 
         }
@@ -364,7 +407,6 @@
             document.getElementById('day-badge').innerText = dayNames[day];
 
             if (isWeekend) {
-                document.getElementById('header-title').innerText = "Víkendová regenerace";
                 const mon = new Date(now); mon.setDate(now.getDate() + ((1 + 7 - day) % 7 || 7));
                 mon.setHours(parseInt(config.workStart.split(':')[0]), parseInt(config.workStart.split(':')[1]), 0, 0);
                 const rem = Math.floor((mon - now) / 1000);
@@ -373,7 +415,6 @@
                 setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 1000); 
                 document.getElementById('progress-bar').style.width = "100%";
             } else {
-                document.getElementById('header-title').innerText = "Cesta ke svobodě";
                 let rem = (5 - day) * (config.workHours * 3600);
                 const ws = timeToSeconds(config.workStart);
                 if (curSec < ws) rem += (config.workHours * 3600);
@@ -416,7 +457,6 @@
                     window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, '_blank');
                     break;
                 case 'mess':
-                    // Messenger FB link sharing
                     window.open(`fb-messenger://share/?link=${encodeURIComponent(url)}`, '_blank') || 
                     showModal("Info", "Messenger vyžaduje mobilní aplikaci nebo přihlášení na webu.");
                     break;
