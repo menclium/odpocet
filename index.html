@@ -50,7 +50,6 @@
             color: white;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         }
-        /* Fix for select options in dark mode */
         body.dark .input-field option {
             background-color: #1f2937;
             color: white;
@@ -144,7 +143,7 @@
                 </div>
                 <div class="p-4 rounded-2xl section-box">
                     <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Musím to nastavovat znovu?</h4>
-                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Pokud teda nesmažeš historii nebo ti IT nešlohne počítač. Všechno se ukládá lokálně, my tvoje data nepotřebujeme – tvůj život je smutný dost i bez nás.</p>
+                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Pokud teda nesmažeš historii nebo ti IT nešlohne počítač. Všechno se ukládá lokálně.</p>
                 </div>
             </div>
             <button onclick="closeFaq()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-black rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20">Zpět do otroctví</button>
@@ -223,25 +222,20 @@
 
             <!-- Share Section -->
             <div class="mt-8">
-                <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-4">Sdílej odpočet s kolegy</label>
                 <div class="share-grid">
-                    <!-- WhatsApp -->
-                    <button onclick="shareDirect('wa')" class="p-3 bg-green-500/10 text-green-600 dark:text-green-400 rounded-2xl hover:bg-green-500/20 transition-all border border-green-500/5 group active:scale-90 flex flex-col items-center gap-1">
+                    <button onclick="shareDirect('wa')" class="p-3 bg-green-500/10 text-green-600 dark:text-green-400 rounded-2xl hover:bg-green-500/20 transition-all border border-green-500/5 active:scale-90 flex flex-col items-center gap-1">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 0 5.414 0 12.05c0 2.123.553 4.197 1.603 6.013L0 24l6.135-1.61a11.802 11.802 0 005.911 1.586h.005c6.635 0 12.049-5.415 12.049-12.05a11.811 11.811 0 00-3.488-8.522z"/></svg>
                         <span class="text-[9px] font-bold">WA</span>
                     </button>
-                    <!-- Messenger -->
-                    <button onclick="shareDirect('mess')" class="p-3 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl hover:bg-blue-500/20 transition-all border border-blue-500/5 group active:scale-90 flex flex-col items-center gap-1">
+                    <button onclick="shareDirect('mess')" class="p-3 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl hover:bg-blue-500/20 transition-all border border-blue-500/5 active:scale-90 flex flex-col items-center gap-1">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.304 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.291 14.674l-3.062-3.268-5.965 3.268 6.556-6.954 3.123 3.268 5.903-3.268-6.555 6.954z"/></svg>
                         <span class="text-[9px] font-bold">Mess</span>
                     </button>
-                    <!-- Telegram -->
-                    <button onclick="shareDirect('tg')" class="p-3 bg-sky-500/10 text-sky-600 dark:text-sky-400 rounded-2xl hover:bg-sky-500/20 transition-all border border-sky-500/5 group active:scale-90 flex flex-col items-center gap-1">
+                    <button onclick="shareDirect('tg')" class="p-3 bg-sky-500/10 text-sky-600 dark:text-sky-400 rounded-2xl hover:bg-sky-500/20 transition-all border border-sky-500/5 active:scale-90 flex flex-col items-center gap-1">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-.962 4.084-1.362 5.411-.168.56-.505 1.283-.837 1.283-.332 0-.616-.251-.912-.485-.296-.234-1.859-1.196-2.574-1.611-.715-.415-1.187-.636-1.187-.636l-2.008 1.48s-.201.121-.383.121c-.182 0-.29-.089-.29-.089l-.101-.121-.06-.827c0 0-.02-.283.121-.527.142-.244 1.344-1.287 1.344-1.287 0 0 1.442-1.348 1.411-1.838-.031-.49-.785-.184-.785-.184s-4.045 2.518-4.664 2.887c-.619.369-1.21.321-1.21.321s-.824-.049-1.109-.17c-.285-.121-.54-.263-.54-.263s-.421-.243.284-.526c.705-.283 8.358-3.522 9.537-4.008 1.179-.486 2.054-.345 2.054-.345s.68.04.887.263c.207.223.23.636.23.636z"/></svg>
                         <span class="text-[9px] font-bold">TG</span>
                     </button>
-                    <!-- Copy Link -->
-                    <button onclick="shareDirect('link')" class="p-3 bg-gray-500/10 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-gray-500/20 transition-all border border-gray-500/5 group active:scale-90 flex flex-col items-center gap-1">
+                    <button onclick="shareDirect('link')" class="p-3 bg-gray-500/10 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-gray-500/20 transition-all border border-gray-500/5 active:scale-90 flex flex-col items-center gap-1">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 012-2v-8a2 2 0 01-2-2h-8a2 2 0 01-2 2v8a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <span class="text-[9px] font-bold">Link</span>
                     </button>
@@ -264,25 +258,72 @@
             "Pondělí je jen způsob, jakým nám vesmír říká, že nás nenávidí.", 
             "Každá cesta začíná kávovarem. Tvůj právě dovařil.",
             "Už jen 120 hodin čistého utrpení. To dáš, hrdino.",
-            "Budík ráno zněl jako siréna k evakuaci z tvého vlastního života."
+            "Budík ráno zněl jako siréna k evakuaci z tvého vlastního života.",
+            "Vesmír vznikl velkým třeskem, tvůj pracovní týden velkým povzdechem.",
+            "Statisticky vzato, teď bys měl být nejvíc produktivní. Realita je jiná.",
+            "Tvůj šéf si právě koupil nové auto. Ty máš tenhle odpočet.",
+            "V pondělí ráno vypadáš přesně tak, jak se cítíš. Hrozně.",
+            "Kdo vymyslel pondělí, zaslouží vlažné pivo do konce věků.",
+            "Pondělí je jako první kapitola špatné detektivky. Chceš to zavřít.",
+            "Úterý je v podstatě pondělí, které se jen lépe převléklo.",
+            "Pracovní nadšení na bodu mrazu. Tekutý dusík je proti tobě horký.",
+            "Tvůj Outlook právě oznámil 42 nových důvodů, proč plakat.",
+            "Snažíš se vypadat zaneprázdněně? Děláš to dobře.",
+            "Zatím to vypadá na dlouhý týden. Velmi dlouhý."
         ];
 
         const db_middle = [
             "Středa – den, kdy už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
             "Půlka týdne. Tvá duše už opustila tělo a čeká u nejbližšího výčepu.", 
-            "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Brambora."
+            "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Brambora.",
+            "Hrb středy je před tebou. Přelez ho, nebo se pod ním plaz.",
+            "Dneska už je v podstatě malý pátek. Kdo tomu věří, pije víc.",
+            "Excelovské tabulky se ti začínají propisovat na sítnici.",
+            "Právě jsi v polovině cesty k zapomnění. Gratulujeme.",
+            "Čtvrtek je nejlepší den. Už to není středa, ale ještě ne pátek.",
+            "Někde ve světě už je víkend. Škoda, že ne tady.",
+            "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
+            "Už cítíš tu vůni svobody? Ne, to je jen mikrovlnka v kuchyňce.",
+            "Dneska už se nic zásadního nestane. Pokud se neschováš pod stůl.",
+            "Zítra touto dobou už budeš mít v ruce první drink. Možná.",
+            "Středa je jako vteřinové lepidlo. Drží tě v práci a nepustí.",
+            "Tvé tělo je v kanceláři, ale hlava je na pláži v Karibiku."
         ];
 
         const db_close = [
             "Cílová rovinka! Už slyšíš to slastné cinkání vychlazených půllitrů?", 
             "Poslední e-mail a pak zmiz jako pára nad hrncem. Nikdo si nevšimne.", 
-            "Už jsi jednou nohou v posteli a druhou v oblíbeném baru."
+            "Už jsi jednou nohou v posteli a druhou v oblíbeném baru.",
+            "Páteční odpoledne: Fyzika v práci přestává fungovat, čas se natahuje.",
+            "Dělej, že píšeš zprávu. Stačí pět minut a můžeš běžet.",
+            "Odchod za 3... 2... 1... jo, ještě ne. Počkej ještě chvíli.",
+            "Tvoje produktivita klesla na úroveň pokojové rostliny.",
+            "Víš, co je nejlepší na pátku? Že zítra je sobota.",
+            "Právě jsi vyhrál bitvu s týdnem. Válka ale pokračuje v pondělí.",
+            "Je čas přepnout mozek na režim 'Nekontaktovat'.",
+            "Právě jsi odeslal poslední smysluplnou věc tohoto týdne.",
+            "Už jen pár minut. Tvůj počítač už taky chce spát.",
+            "Pátek je jediný den, kdy ti i dopravní zácpa přijde snesitelná.",
+            "Gratulujeme, přežil jsi další týden korporátního pekla.",
+            "Běž domů. Teď hned. Nikdo tě tu nedrží (kromě hypotéky)."
         ];
 
         const db_weekend = [
             "Užívej si to, dokud můžeš. Pondělí se tiše plíží hned za rohem.", 
             "Nedělní večer – ideální čas na lehkou existenciální krizi.",
-            "Víkend je jako dovolená, ale s brutálně rychlým přetáčením."
+            "Víkend je jako dovolená, ale s brutálně rychlým přetáčením.",
+            "Sobota ráno: Jediný čas, kdy ticho není podezřelé.",
+            "Dneska nemusíš dělat nic. A děláš to skvěle.",
+            "Odpočívej. Pondělní schůzky se samy nenaplánují.",
+            "Víkend je příliš krátký na to, abys o něm přemýšlel.",
+            "Nedělní oběd je bod zlomu. Pak už je to jen pád do pondělí.",
+            "Jsi v bezpečné zóně. Práce sem nesmí.",
+            "Tvé e-maily teď nikoho nezajímají. Ani tebe.",
+            "Užij si ten pocit, že nemusíš nastavovat budík. Pokud nemáš děti.",
+            "Sobota večer: Čas na regeneraci jater... nebo jejich další zátěž.",
+            "Nedělní deprese je přirozený stav moderního člověka.",
+            "Víkend je iluze, která trvá přesně 48 hodin. Čas běží.",
+            "Právě teď jsi nejšťastnější verze sebe sama."
         ];
 
         let currentMsgId = -1;
@@ -402,7 +443,7 @@
             const curSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
             const sEnd = timeToSeconds(config.workEnd);
             const isWeekend = (day === 0 || day === 6 || (day === 5 && curSec >= sEnd));
-            const messageSeed = Math.floor(Date.now() / 30000);
+            const messageSeed = Math.floor(Date.now() / 20000); // Rychlejší střídání hlášek (každých 20s)
             
             document.getElementById('day-badge').innerText = dayNames[day];
 
@@ -412,7 +453,7 @@
                 const rem = Math.floor((mon - now) / 1000);
                 document.getElementById('counter').innerText = formatTime(rem, 86400);
                 document.getElementById('total-seconds').innerText = `${rem.toLocaleString()} vteřin`;
-                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 1000); 
+                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 4000); 
                 document.getElementById('progress-bar').style.width = "100%";
             } else {
                 let rem = (5 - day) * (config.workHours * 3600);
@@ -434,7 +475,7 @@
                 document.getElementById('label-remaining').innerText = `Zbývá: ${(100-prog).toFixed(1)}%`;
                 
                 const pool = prog < 33 ? db_early : (prog < 75 ? db_middle : db_close);
-                setStatusMessage(pool[messageSeed % pool.length], (messageSeed % pool.length) + (prog < 33 ? 2000 : 3000));
+                setStatusMessage(pool[messageSeed % pool.length], (messageSeed % pool.length) + (prog < 33 ? 1000 : (prog < 75 ? 2000 : 3000)));
             }
         }
 
@@ -470,7 +511,7 @@
                     i.select();
                     document.execCommand("copy");
                     document.body.removeChild(i);
-                    showModal("Odkaz zkopírován", "Odkaz na aplikaci byl uložen do schránky. Můžeš ho poslat kolegům.");
+                    showModal("Odkaz zkopírován", "Odkaz na aplikaci byl uložen do schránky.");
                     break;
             }
         }
