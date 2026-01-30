@@ -1,1 +1,577 @@
-a
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odpočet do víkendu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        :root {
+            --app-max-width: 500px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: var(--app-max-width);
+            padding: 1rem;
+            margin: auto;
+        }
+
+        /* Dark Mode styles */
+        body.dark {
+            background: radial-gradient(circle at top left, #1a202c, #111827);
+            color: white;
+        }
+        body.dark .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px rgba(255, 255, 255, 0.1) solid;
+        }
+        body.dark .section-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body.dark .input-field {
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        body.dark .input-field option {
+            background-color: #1f2937;
+            color: white;
+        }
+        body.dark .input-field:focus {
+            border-color: #3b82f6;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Light Mode styles */
+        body.light {
+            background: radial-gradient(circle at top left, #f8fafc, #e2e8f0);
+            color: #1e293b;
+        }
+        body.light .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px rgba(255, 255, 255, 0.4) solid;
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+        body.light .section-box {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        body.light .input-field {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            color: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        body.light .input-field option {
+            background-color: white;
+            color: #1e293b;
+        }
+        body.light .input-field:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .counter-text {
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
+            line-height: 1.1;
+        }
+
+        .faq-scroll::-webkit-scrollbar { width: 4px; }
+        .faq-scroll::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 10px; }
+
+        #status-msg { transition: opacity 0.4s ease, transform 0.4s ease; }
+        .msg-hide { opacity: 0; transform: translateY(10px); }
+
+        #faq-modal.light-overlay { background: rgba(241, 245, 249, 0.8); }
+        #faq-modal.dark-overlay { background: rgba(15, 23, 42, 0.9); }
+        
+        .share-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+        }
+
+        .input-field {
+            transition: all 0.2s ease-in-out;
+            appearance: none;
+        }
+        
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(0.5);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="p-2 sm:p-4">
+
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="fixed inset-0 z-[60] flex items-center justify-center hidden backdrop-blur-md p-4 transition-all duration-300">
+        <div class="glass w-full max-w-lg rounded-[2.5rem] p-6 sm:p-10 shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-start mb-6">
+                <h3 class="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-emerald-500 text-center w-full">Zbytečné dotazy</h3>
+            </div>
+            <div class="faq-scroll overflow-y-auto pr-2 space-y-4 text-sm sm:text-base leading-relaxed mb-6">
+                <div class="p-4 rounded-2xl section-box">
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">K čemu to jako je?</h4>
+                    <p class="opacity-70">Slouží to k tomu, abys mohl v reálném čase sledovat, jak ti život protéká mezi prsty, zatímco tvůj šéf bohatne. Počítáme vteřiny do momentu, kdy můžeš legálně prásknout dveřmi.</p>
+                </div>
+                <div class="p-4 rounded-2xl section-box">
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Proč nemůžu kliknout na "Padla"?</h4>
+                    <p class="opacity-70">Protože "Padla" není přání, ale krutá matematika. Aplikace vezme tvůj <strong>Začátek</strong>, přičte k tomu <strong>Pauzu</strong> a <strong>Pracovní dobu</strong>. Výsledek je čas, kdy tě systém milostivě propustí.</p>
+                </div>
+                <div class="p-4 rounded-2xl section-box">
+                    <h4 class="font-bold text-blue-500 dark:text-blue-400 uppercase text-[10px] mb-2 tracking-widest">Musím to nastavovat znovu?</h4>
+                    <p class="opacity-70">Ne. Tvůj prohlížeč si tvůj zoufalý rozvrh pamatuje. Všechno se ukládá lokálně.</p>
+                </div>
+            </div>
+            <button onclick="closeFaq()" class="w-full py-4 bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-black rounded-2xl hover:brightness-110 active:scale-[0.98] transition-all uppercase text-xs tracking-widest shadow-lg shadow-blue-500/20">Zpět do otroctví</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <div class="glass rounded-[2.5rem] p-6 sm:p-10 text-center relative overflow-hidden">
+            <!-- Header Actions -->
+            <div class="flex justify-between items-center mb-8">
+                <button onclick="openFaq()" class="px-4 py-2 rounded-xl bg-blue-500/10 text-blue-500 border border-blue-500/10 hover:bg-blue-500/20 font-bold text-[10px] tracking-widest transition-all uppercase">FAQ</button>
+                <button id="theme-toggle" class="p-2.5 rounded-xl bg-gray-500/5 hover:bg-gray-500/10 transition-colors">
+                    <svg id="sun-icon" class="hidden w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg id="moon-icon" class="hidden w-6 h-6 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </button>
+            </div>
+
+            <!-- Header Info -->
+            <div class="space-y-1 mb-6">
+                <h1 class="text-blue-500 font-black uppercase tracking-[0.2em] text-lg sm:text-xl">Odpočet do víkendu</h1>
+                <h2 id="header-title" class="text-gray-400 font-black uppercase tracking-[0.3em] text-[10px] opacity-80">Cesta ke svobodě</h2>
+                <div id="day-badge" class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-500 text-[10px] font-black uppercase tracking-widest mt-2">...</div>
+            </div>
+            
+            <!-- Counter Display -->
+            <div class="mb-2">
+                <div id="counter" class="counter-text font-extrabold tabular-nums bg-clip-text text-transparent bg-gradient-to-br from-blue-500 via-indigo-500 to-emerald-500">0d 00h 00m 00s</div>
+                <div id="total-seconds" class="text-xs sm:text-sm font-semibold opacity-40 tabular-nums mt-2 tracking-wide">0 vteřin</div>
+            </div>
+
+            <!-- Progress -->
+            <div class="mt-8 mb-8">
+                <div class="flex justify-between text-[9px] text-gray-400 uppercase mb-2 px-1 font-black tracking-widest">
+                    <span id="label-passed">Stav: 0%</span>
+                    <span id="label-remaining">Zbývá: 100%</span>
+                </div>
+                <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2.5 sm:h-3 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-emerald-500 h-full transition-all duration-1000 shadow-[0_0_15px_rgba(59,130,246,0.5)]" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Message Box -->
+            <div id="status-msg" class="min-h-[5rem] flex items-center justify-center italic text-sm sm:text-base text-blue-600 dark:text-blue-300 px-4 text-center leading-relaxed font-medium">Načítání...</div>
+
+            <!-- Settings Grid -->
+            <div class="mt-10 pt-8 border-t border-gray-500/10">
+                <div class="grid grid-cols-2 gap-4 sm:gap-6 text-left">
+                    <div class="col-span-2 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Čistá pracovní doba</label>
+                        <div class="relative">
+                            <select id="workHours" class="input-field w-full p-4 rounded-2xl text-base outline-none cursor-pointer font-bold pr-10"></select>
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Začátek</label>
+                        <input type="time" id="workStart" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
+                    </div>
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-blue-500 block mb-2 px-1">Konec (Padla)</label>
+                        <input type="time" id="workEnd" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold opacity-60 cursor-not-allowed bg-blue-500/5 !border-blue-500/20" readonly title="Vypočítáno automaticky">
+                    </div>
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Oběd od</label>
+                        <input type="time" id="lunchStart" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
+                    </div>
+                    <div class="col-span-1 group">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-2 px-1">Oběd do</label>
+                        <input type="time" id="lunchEnd" class="input-field w-full p-3 sm:p-4 rounded-2xl text-base outline-none font-bold">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Section -->
+            <div class="mt-8">
+                <div class="share-grid">
+                    <button onclick="shareDirect('wa')" class="p-3 bg-green-500/10 text-green-600 dark:text-green-400 rounded-2xl hover:bg-green-500/20 transition-all border border-green-500/5 active:scale-90 flex flex-col items-center gap-1">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 0 5.414 0 12.05c0 2.123.553 4.197 1.603 6.013L0 24l6.135-1.61a11.802 11.802 0 005.911 1.586h.005c6.635 0 12.049-5.415 12.049-12.05a11.811 11.811 0 00-3.488-8.522z"/></svg>
+                        <span class="text-[9px] font-bold">WA</span>
+                    </button>
+                    <button onclick="shareDirect('mess')" class="p-3 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl hover:bg-blue-500/20 transition-all border border-blue-500/5 active:scale-90 flex flex-col items-center gap-1">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.304 2.246.464 3.443.464 6.627 0 12-4.974 12-11.111C24 4.974 18.627 0 12 0zm1.291 14.674l-3.062-3.268-5.965 3.268 6.556-6.954 3.123 3.268 5.903-3.268-6.555 6.954z"/></svg>
+                        <span class="text-[9px] font-bold">Mess</span>
+                    </button>
+                    <button onclick="shareDirect('tg')" class="p-3 bg-sky-500/10 text-sky-600 dark:text-sky-400 rounded-2xl hover:bg-sky-500/20 transition-all border border-sky-500/5 active:scale-90 flex flex-col items-center gap-1">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18.717-.962 4.084-1.362 5.411-.168.56-.505 1.283-.837 1.283-.332 0-.616-.251-.912-.485-.296-.234-1.859-1.196-2.574-1.611-.715-.415-1.187-.636-1.187-.636l-2.008 1.48s-.201.121-.383.121c-.182 0-.29-.089-.29-.089l-.101-.121-.06-.827c0 0-.02-.283.121-.527.142-.244 1.344-1.287 1.344-1.287 0 0 1.442-1.348 1.411-1.838-.031-.49-.785-.184-.785-.184s-4.045 2.518-4.664 2.887c-.619.369-1.21.321-1.21.321s-.824-.049-1.109-.17c-.285-.121-.54-.263-.54-.263s-.421-.243.284-.526c.705-.283 8.358-3.522 9.537-4.008 1.179-.486 2.054-.345 2.054-.345s.68.04.887.263c.207.223.23.636.23.636z"/></svg>
+                        <span class="text-[9px] font-bold">TG</span>
+                    </button>
+                    <button onclick="shareDirect('link')" class="p-3 bg-gray-500/10 text-gray-600 dark:text-gray-400 rounded-2xl hover:bg-gray-500/20 transition-all border border-gray-500/5 active:scale-90 flex flex-col items-center gap-1">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 012-2v-8a2 2 0 01-2-2h-8a2 2 0 01-2 2v8a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="text-[9px] font-bold">Link</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error/Info Modal -->
+    <div id="error-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-slate-900/40 backdrop-blur-md p-4">
+        <div class="glass max-w-sm w-full rounded-[2rem] p-8 text-center shadow-2xl">
+            <h3 id="modal-title" class="text-xl font-black mb-4 text-blue-500">Oznámení</h3>
+            <p id="error-message" class="text-sm opacity-70 mb-8 font-medium"></p>
+            <button onclick="closeModal()" class="w-full py-4 bg-blue-500 text-white font-bold rounded-2xl hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/20">Rozumím</button>
+        </div>
+    </div>
+
+    <script>
+        const dailyQuotes = {
+            1: [ // Pondělí
+                "Vítej v očistci. Užij si těch 120 hodin čisté marnosti.",
+                "Pondělí je jen způsob, jakým ti vesmír plive do tváře.",
+                "Tvá motivace je mrtvá. Pohřbil ji ranní budík.",
+                "Doufal jsi, že se ráno neprobudíš? Smůla. Hypotéka nepočká.",
+                "Už jen pět dní sebeklamu, že tvoje práce má smysl.",
+                "Statisticky v pondělí nejvíc lidí infarktuje. Tak se snaž.",
+                "Tvé tělo je v kanceláři, tvá důstojnost zůstala pod peřinou.",
+                "Pondělí je jako špatný horor. A ty jsi ta postava, co umře první.",
+                "Už jsi zkusil vypnout a zapnout svůj život? Ne? Škoda.",
+                "Tvůj šéf si právě koupil jachtu. Ty máš tenhle blbej odpočet.",
+                "Dívej se na tu vteřinovku. To je tvůj život, jak mizí v kanále.",
+                "Pondělí ráno vypadáš přesně tak, jak se cítíš. Tragicky.",
+                "Zase tady smrdíš. A budeš tu smrdět až do pátku.",
+                "Tvá káva je studená jako tvé vyhlídky na povýšení.",
+                "Pracovní nadšení? To jsi nechal v roce 2015, ne?",
+                "Dalších 8 hodin předstírání, že nejsi úplně vyhořelý.",
+                "První e-mail a už chceš někoho praštit. Dobrý start.",
+                "Kdo vymyslel pondělí, měl by dostat Nobelovku za sadismus.",
+                "Jsi jen kolečko v rezavém stroji. A dneska to sakra skřípe.",
+                "Víkend je v nedohlednu. Možná ani neexistuje."
+            ],
+            2: [ // Úterý
+                "Úterý je jen pondělí, kterému došel makeup.",
+                "Stále jsi tady? Fascinující, kolik toho tvá duše vydrží.",
+                "Druhý den utrpení. A ty si pořád myslíš, že to dáš.",
+                "Úterý je nejobyčejnější den. Nikdo ho nemá rád, nikdo ho neřeší.",
+                "Tvá produktivita klesá rychleji než hodnota rublu.",
+                "Gratulujeme, přežil jsi 24 hodin. Zbývá jich už jen nekonečno.",
+                "Excelovské tabulky ti už lezou i ušima. Dobře ti tak.",
+                "Snažíš se vypadat zaneprázdněně? Děláš to fakt blbě.",
+                "Kofein už nezabírá. Potřebuješ spíš elektrošoky.",
+                "Tvé sny o svobodě jsou stejně reálné jako tvůj bonus.",
+                "Úterý je den, kdy si uvědomíš, že tenhle týden fakt nekončí.",
+                "Zíráš do monitoru a monitor zírá do tvé prázdnoty.",
+                "Už jsi dneska ztratil veškerou naději, nebo ti ještě kousek zbyl?",
+                "Pracovní doba je jako vězení, ale bez té zajímavé stravy.",
+                "Tvé Outlook notifikace jsou jako výkřiky z pekla.",
+                "Úterý: Den, kdy i ten největší optimista začíná pít.",
+                "Vážně si myslíš, že ty reporty někdo čte? Jsi tak naivní.",
+                "Jsi v polovině cesty k ničemu. Užij si výhled.",
+                "Tvé IQ klesá s každým 'Jak jsme na tom?' od tvého šéfa.",
+                "Úterý je prostě jenom hnusný."
+            ],
+            3: [ // Středa
+                "Středa. Hrb týdne. A ty jsi ten, co ho musí přelézt.",
+                "Už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
+                "Půlka týdne. Tvá duše už čeká u nejbližšího výčepu.",
+                "Středa je jako vteřinové lepidlo. Drží tě v práci a nepustí.",
+                "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Celer.",
+                "Už jsi zvažoval, že se schováš v archivu a vylezeš v pátek?",
+                "Středa je malý pátek? To vymyslel někdo, kdo už úplně zešílel.",
+                "Dneska už je v podstatě jedno, co uděláš. Stejně to bude blbě.",
+                "Právě jsi v polovině cesty k zapomnění. Gratulujeme k ničemu.",
+                "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
+                "Hádanka: Má to dvě nohy a už to mělo být doma? Ty.",
+                "Středa je den, kdy začneš plánovat svou falešnou smrt.",
+                "Cítíš tu vůni? Ne, to není víkend. To je jen tvůj pot.",
+                "Zase ta samá mikrovlnka, zase ten samej hnusnej oběd.",
+                "Tvůj smysl života se právě zmenšil na velikost tvojí pauzy.",
+                "Středa je jako návštěva u zubaře. Musíš to vydržet, ale bolí to.",
+                "Tvá trpělivost je tenčí než papír v tiskárně.",
+                "Už jen dva dny a kousek. Pokud tě do té doby neklepne.",
+                "Práce tě osvobozuje? Ne, práce tě jen brutálně unavuje.",
+                "Středa. Zase o den blíž k hrobu."
+            ],
+            4: [ // Čtvrtek
+                "Čtvrtek. Už cítíš tu svobodu? Ne? To bude tím, že jsi pořád v práci.",
+                "Skoro tam jsi, ale tenhle den se potáhne jako tvůj workflow.",
+                "Čtvrtek je nejhorší lhář. Tváří se jako naděje, ale je to pořád dřina.",
+                "Už jen pár hodin předstírání zájmu. To zvládneš, lháři.",
+                "Tvá kreativita je na úrovni prázdné sešívačky.",
+                "Čtvrtek je den, kdy už se ani nesnažíš skrývat svůj odpor.",
+                "Někde ve světě už je víkend. Škoda, že ty jsi zrovna tady.",
+                "Dneska už se nic zásadního nestane. Pokud se neschováš pod stůl.",
+                "Zítra touto dobou už budeš mít v ruce drink. Snad se toho dožiješ.",
+                "Čtvrtek: Den, kdy i káva chutná po zoufalství.",
+                "Tvé tělo je v kanceláři, ale hlava už řeší, co si koupí v akci.",
+                "Už jsi dneska někoho poslal někam? Ještě je čas.",
+                "Čtvrtek je jako předkrm k jídlu, které ti stejně nebude chutnat.",
+                "Statisticky dneska uděláš nejvíc chyb. Tak do toho.",
+                "Tvá existence je redukována na čekání na pípnutí píchaček.",
+                "Už jen jeden den korporátního pekla. Pokud nepracuješ o víkendu.",
+                "Čtvrtek je den pro lidi, co už nemají co ztratit.",
+                "Tvůj mozek už dávno odešel na dovolenou. Zbytek těla ho následuje.",
+                "Právě jsi promrhal další hodinu života. A tvoje výplata? Pořád stejná.",
+                "Čtvrtek je jenom převlečená beznaděj."
+            ],
+            5: [ // Pátek
+                "Cílová rovinka, ty trosko! Už slyšíš to cinkání půllitrů?",
+                "Poslední e-mail a pak zmiz jako pára nad hrncem. Nikdo tě nechce.",
+                "Už jsi jednou nohou v baru a druhou v bezvědomí.",
+                "Páteční odpoledne: Fyzika přestává fungovat, čas se natahuje do nekonečna.",
+                "Dělej, že píšeš zprávu. Stačí deset minut a můžeš vypadnout.",
+                "Tvoje produktivita klesla na úroveň pokojové kytky. Možná i níž.",
+                "Víš, co je nejlepší na pátku? Že zítra tě nikdo neuvidí plakat v kanclu.",
+                "Právě jsi vyhrál bitvu s týdnem. Válka ale začíná v pondělí ráno.",
+                "Je čas přepnout mozek na režim 'Nekontaktovat, jsem mrtvej'.",
+                "Právě jsi odeslal poslední lež tohoto týdne. Gratulujeme.",
+                "Pátek je jediný den, kdy ti i tvůj šéf přijde skoro jako člověk.",
+                "Běž domů. Teď hned. Nikdo tě tu nedrží (kromě tvého dluhu na kreditce).",
+                "Páteční euforie je jen dočasná chemická reakce na blížící se konec.",
+                "Za hodinu už budeš vědět, proč piješ. Jako bys to nevěděl už teď.",
+                "Už jen pár vteřin a tvoje pracovní identita se rozplyne.",
+                "Pátek: Den, kdy se všichni tváří, že něco dělají, ale všichni jen scrolují.",
+                "Tvá svoboda má jméno: Sobota a Neděle. Škoda, že trvají asi pět minut.",
+                "Gratulujeme, přežil jsi další týden marnosti. Jsi hrdina, nebo blázen?",
+                "Pátek odpoledne je čas na hluboký nádech a ještě hlubší sklenici.",
+                "Padla! Zmiz, než si tě někdo všimne a dá ti práci navíc."
+            ]
+        };
+
+        const db_weekend = [
+            "Užívej si to, dokud můžeš. Pondělí se tiše plíží hned za rohem.", 
+            "Nedělní večer – ideální čas na lehkou existenciální krizi.",
+            "Víkend je jako dovolená, ale s brutálně rychlým přetáčením.",
+            "Sobota ráno: Jediný čas, kdy ticho není podezřelé.",
+            "Dneska nemusíš dělat nic. A děláš to skvěle.",
+            "Odpočívej. Pondělní schůzky se samy nenaplánují.",
+            "Víkend je příliš krátký na to, abys o něm přemýšlel.",
+            "Nedělní oběd je bod zlomu. Pak už je to jen pád do pondělí.",
+            "Jsi v bezpečné zóně. Práce sem nesmí.",
+            "Tvé e-maily teď nikoho nezajímají. Ani tebe.",
+            "Nedělní deprese je přirozený stav moderního člověka.",
+            "Víkend je iluze, která trvá přesně 48 hodin. Čas běží.",
+            "Právě teď jsi nejšťastnější verze sebe sama. To je smutný, co?"
+        ];
+
+        let currentMsgId = -1;
+
+        const config = {
+            workHours: parseFloat(localStorage.getItem('workHours')) || 8,
+            workStart: localStorage.getItem('workStart') || "08:00",
+            workEnd: localStorage.getItem('workEnd') || "17:00",
+            lunchStart: localStorage.getItem('lunchStart') || "12:00",
+            lunchEnd: localStorage.getItem('lunchEnd') || "13:00"
+        };
+
+        const dayNames = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"];
+
+        window.showModal = (title, message) => {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('error-message').innerText = message;
+            document.getElementById('error-modal').classList.remove('hidden');
+        };
+        window.closeModal = () => document.getElementById('error-modal').classList.add('hidden');
+        window.openFaq = () => {
+            const modal = document.getElementById('faq-modal');
+            modal.classList.remove('hidden', 'light-overlay', 'dark-overlay');
+            modal.classList.add(document.body.classList.contains('dark') ? 'dark-overlay' : 'light-overlay');
+        };
+        window.closeFaq = () => document.getElementById('faq-modal').classList.add('hidden');
+
+        function timeToSeconds(t) { 
+            if (!t) return 0;
+            const [h, m] = t.split(':').map(Number); 
+            return h * 3600 + m * 60; 
+        }
+
+        function secondsToTime(s) {
+            const h = Math.floor((s / 3600) % 24), m = Math.floor((s % 3600) / 60);
+            return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
+        }
+
+        function validateTimes() {
+            let ws = timeToSeconds(config.workStart);
+            let ls = timeToSeconds(config.lunchStart);
+            let le = timeToSeconds(config.lunchEnd);
+            
+            const currentLunchDur = Math.max(0, le - ls);
+            let tempEnd = ws + (config.workHours * 3600) + currentLunchDur;
+
+            if (ls < ws) {
+                ls = ws;
+                config.lunchStart = secondsToTime(ls);
+                document.getElementById('lunchStart').value = config.lunchStart;
+            }
+
+            if (le > tempEnd) {
+                le = tempEnd;
+                config.lunchEnd = secondsToTime(le);
+                document.getElementById('lunchEnd').value = config.lunchEnd;
+            }
+
+            if (le <= ls) {
+                le = ls + 1800; 
+                config.lunchEnd = secondsToTime(le);
+                document.getElementById('lunchEnd').value = config.lunchEnd;
+            }
+
+            localStorage.setItem('lunchStart', config.lunchStart);
+            localStorage.setItem('lunchEnd', config.lunchEnd);
+            localStorage.setItem('workStart', config.workStart);
+        }
+
+        function updateWorkEnd() {
+            validateTimes();
+            const startSec = timeToSeconds(config.workStart);
+            const lunchDur = timeToSeconds(config.lunchEnd) - timeToSeconds(config.lunchStart);
+            const endSec = startSec + (config.workHours * 3600) + lunchDur;
+            config.workEnd = secondsToTime(endSec);
+            document.getElementById('workEnd').value = config.workEnd;
+            localStorage.setItem('workEnd', config.workEnd);
+        }
+
+        ['workHours', 'workStart', 'lunchStart', 'lunchEnd'].forEach(id => {
+            const el = document.getElementById(id);
+            if (id === 'workHours') {
+                el.innerHTML = '';
+                for(let i=4; i<=16; i+=0.5) el.innerHTML += `<option value="${i}" ${i===config.workHours?'selected':''}>${i} h</option>`;
+            } else el.value = config[id];
+            el.addEventListener('change', (e) => {
+                config[id] = id === 'workHours' ? parseFloat(e.target.value) : e.target.value;
+                localStorage.setItem(id, config[id]);
+                updateWorkEnd();
+                update();
+            });
+        });
+
+        function formatTime(s, perDay) {
+            const d = Math.floor(s / perDay), r = s % perDay;
+            const h = Math.floor(r / 3600), m = Math.floor((r % 3600) / 60), sec = Math.floor(r % 60);
+            return `${d}d ${h.toString().padStart(2,'0')}h ${m.toString().padStart(2,'0')}m ${sec.toString().padStart(2,'0')}s`;
+        }
+
+        function setStatusMessage(newText, newId) {
+            const el = document.getElementById('status-msg');
+            if (newId !== currentMsgId) {
+                el.classList.add('msg-hide');
+                setTimeout(() => {
+                    el.innerText = newText;
+                    el.classList.remove('msg-hide');
+                    currentMsgId = newId;
+                }, 400);
+            } else if (el.innerText === "Načítání...") {
+                el.innerText = newText;
+            }
+        }
+
+        function update() {
+            const now = new Date();
+            const day = now.getDay(); // 0 (Sun) to 6 (Sat)
+            const curSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+            const sEnd = timeToSeconds(config.workEnd);
+            const isWeekend = (day === 0 || day === 6 || (day === 5 && curSec >= sEnd));
+            const messageSeed = Math.floor(Date.now() / 15000); // Každých 15s nová hláška
+            
+            document.getElementById('day-badge').innerText = dayNames[day];
+
+            if (isWeekend) {
+                const mon = new Date(now); mon.setDate(now.getDate() + ((1 + 7 - day) % 7 || 7));
+                mon.setHours(parseInt(config.workStart.split(':')[0]), parseInt(config.workStart.split(':')[1]), 0, 0);
+                const rem = Math.floor((mon - now) / 1000);
+                document.getElementById('counter').innerText = formatTime(rem, 86400);
+                document.getElementById('total-seconds').innerText = `${rem.toLocaleString()} vteřin`;
+                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 5000); 
+                document.getElementById('progress-bar').style.width = "100%";
+            } else {
+                let rem = (5 - day) * (config.workHours * 3600);
+                const ws = timeToSeconds(config.workStart);
+                if (curSec < ws) rem += (config.workHours * 3600);
+                else if (curSec < sEnd) {
+                    let todayRem = sEnd - curSec;
+                    const ls = timeToSeconds(config.lunchStart), le = timeToSeconds(config.lunchEnd);
+                    if (curSec < ls) todayRem -= (le - ls);
+                    else if (curSec < le) todayRem -= (le - curSec);
+                    rem += Math.max(0, todayRem);
+                }
+                const total = 5 * (config.workHours * 3600);
+                const prog = Math.min(100, ((total - rem) / total) * 100);
+                document.getElementById('counter').innerText = formatTime(Math.max(0, Math.floor(rem)), config.workHours * 3600);
+                document.getElementById('total-seconds').innerText = `${Math.max(0, Math.floor(rem)).toLocaleString()} vteřin`;
+                document.getElementById('progress-bar').style.width = prog + "%";
+                document.getElementById('label-passed').innerText = `Stav: ${prog.toFixed(1)}%`;
+                document.getElementById('label-remaining').innerText = `Zbývá: ${(100-prog).toFixed(1)}%`;
+                
+                // Výběr hlášky podle dne v týdnu (1=Pon, 5=Pá)
+                const pool = dailyQuotes[day] || dailyQuotes[1];
+                setStatusMessage(pool[messageSeed % pool.length], (day * 100) + (messageSeed % pool.length));
+            }
+        }
+
+        let isDark = localStorage.getItem('theme') !== 'light';
+        const applyTheme = () => {
+            document.body.className = isDark ? 'dark' : 'light';
+            document.getElementById('sun-icon').classList.toggle('hidden', !isDark);
+            document.getElementById('moon-icon').classList.toggle('hidden', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        };
+        document.getElementById('theme-toggle').onclick = () => { isDark = !isDark; applyTheme(); };
+        applyTheme();
+
+        function shareDirect(platform) {
+            const url = window.location.href;
+            const text = "Sleduj, jak mi život protéká mezi prsty v korporátu! 💀";
+            
+            switch(platform) {
+                case 'wa':
+                    window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, '_blank');
+                    break;
+                case 'mess':
+                    window.open(`fb-messenger://share/?link=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'tg':
+                    window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+                    break;
+                case 'link':
+                    const i = document.createElement("textarea");
+                    i.value = url;
+                    document.body.appendChild(i);
+                    i.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(i);
+                    showModal("Odkaz zkopírován", "Odkaz na tvoje utrpení byl uložen do schránky.");
+                    break;
+            }
+        }
+
+        updateWorkEnd();
+        setInterval(update, 1000);
+        update();
+    </script>
+</body>
+</html>
