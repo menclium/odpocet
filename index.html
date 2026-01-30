@@ -251,133 +251,351 @@
 
     <script>
         const dailyQuotes = {
-            1: [ // Pondělí
-                "Vítej v očistci. Užij si těch 120 hodin čisté marnosti.",
-                "Pondělí je jen způsob, jakým ti vesmír plive do tváře.",
-                "Tvá motivace je mrtvá. Pohřbil ji ranní budík.",
-                "Doufal jsi, že se ráno neprobudíš? Smůla. Hypotéka nepočká.",
-                "Už jen pět dní sebeklamu, že tvoje práce má smysl.",
-                "Statisticky v pondělí nejvíc lidí infarktuje. Tak se snaž.",
-                "Tvé tělo je v kanceláři, tvá důstojnost zůstala pod peřinou.",
-                "Pondělí je jako špatný horor. A ty jsi ta postava, co umře první.",
-                "Už jsi zkusil vypnout a zapnout svůj život? Ne? Škoda.",
-                "Tvůj šéf si právě koupil jachtu. Ty máš tenhle blbej odpočet.",
-                "Dívej se na tu vteřinovku. To je tvůj život, jak mizí v kanále.",
-                "Pondělí ráno vypadáš přesně tak, jak se cítíš. Tragicky.",
-                "Zase tady smrdíš. A budeš tu smrdět až do pátku.",
-                "Tvá káva je studená jako tvé vyhlídky na povýšení.",
-                "Pracovní nadšení? To jsi nechal v roce 2015, ne?",
-                "Dalších 8 hodin předstírání, že nejsi úplně vyhořelý.",
-                "První e-mail a už chceš někoho praštit. Dobrý start.",
-                "Kdo vymyslel pondělí, měl by dostat Nobelovku za sadismus.",
-                "Jsi jen kolečko v rezavém stroji. A dneska to sakra skřípe.",
-                "Víkend je v nedohlednu. Možná ani neexistuje."
-            ],
-            2: [ // Úterý
-                "Úterý je jen pondělí, kterému došel makeup.",
-                "Stále jsi tady? Fascinující, kolik toho tvá duše vydrží.",
-                "Druhý den utrpení. A ty si pořád myslíš, že to dáš.",
-                "Úterý je nejobyčejnější den. Nikdo ho nemá rád, nikdo ho neřeší.",
-                "Tvá produktivita klesá rychleji než hodnota rublu.",
-                "Gratulujeme, přežil jsi 24 hodin. Zbývá jich už jen nekonečno.",
-                "Excelovské tabulky ti už lezou i ušima. Dobře ti tak.",
-                "Snažíš se vypadat zaneprázdněně? Děláš to fakt blbě.",
-                "Kofein už nezabírá. Potřebuješ spíš elektrošoky.",
-                "Tvé sny o svobodě jsou stejně reálné jako tvůj bonus.",
-                "Úterý je den, kdy si uvědomíš, že tenhle týden fakt nekončí.",
-                "Zíráš do monitoru a monitor zírá do tvé prázdnoty.",
-                "Už jsi dneska ztratil veškerou naději, nebo ti ještě kousek zbyl?",
-                "Pracovní doba je jako vězení, ale bez té zajímavé stravy.",
-                "Tvé Outlook notifikace jsou jako výkřiky z pekla.",
-                "Úterý: Den, kdy i ten největší optimista začíná pít.",
-                "Vážně si myslíš, že ty reporty někdo čte? Jsi tak naivní.",
-                "Jsi v polovině cesty k ničemu. Užij si výhled.",
-                "Tvé IQ klesá s každým 'Jak jsme na tom?' od tvého šéfa.",
-                "Úterý je prostě jenom hnusný."
-            ],
-            3: [ // Středa
-                "Středa. Hrb týdne. A ty jsi ten, co ho musí přelézt.",
-                "Už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
-                "Půlka týdne. Tvá duše už čeká u nejbližšího výčepu.",
-                "Středa je jako vteřinové lepidlo. Drží tě v práci a nepustí.",
-                "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Celer.",
-                "Už jsi zvažoval, že se schováš v archivu a vylezeš v pátek?",
-                "Středa je malý pátek? To vymyslel někdo, kdo už úplně zešílel.",
-                "Dneska už je v podstatě jedno, co uděláš. Stejně to bude blbě.",
-                "Právě jsi v polovině cesty k zapomnění. Gratulujeme k ničemu.",
-                "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
-                "Hádanka: Má to dvě nohy a už to mělo být doma? Ty.",
-                "Středa je den, kdy začneš plánovat svou falešnou smrt.",
-                "Cítíš tu vůni? Ne, to není víkend. To je jen tvůj pot.",
-                "Zase ta samá mikrovlnka, zase ten samej hnusnej oběd.",
-                "Tvůj smysl života se právě zmenšil na velikost tvojí pauzy.",
-                "Středa je jako návštěva u zubaře. Musíš to vydržet, ale bolí to.",
-                "Tvá trpělivost je tenčí než papír v tiskárně.",
-                "Už jen dva dny a kousek. Pokud tě do té doby neklepne.",
-                "Práce tě osvobozuje? Ne, práce tě jen brutálně unavuje.",
-                "Středa. Zase o den blíž k hrobu."
-            ],
-            4: [ // Čtvrtek
-                "Čtvrtek. Už cítíš tu svobodu? Ne? To bude tím, že jsi pořád v práci.",
-                "Skoro tam jsi, ale tenhle den se potáhne jako tvůj workflow.",
-                "Čtvrtek je nejhorší lhář. Tváří se jako naděje, ale je to pořád dřina.",
-                "Už jen pár hodin předstírání zájmu. To zvládneš, lháři.",
-                "Tvá kreativita je na úrovni prázdné sešívačky.",
-                "Čtvrtek je den, kdy už se ani nesnažíš skrývat svůj odpor.",
-                "Někde ve světě už je víkend. Škoda, že ty jsi zrovna tady.",
-                "Dneska už se nic zásadního nestane. Pokud se neschováš pod stůl.",
-                "Zítra touto dobou už budeš mít v ruce drink. Snad se toho dožiješ.",
-                "Čtvrtek: Den, kdy i káva chutná po zoufalství.",
-                "Tvé tělo je v kanceláři, ale hlava už řeší, co si koupí v akci.",
-                "Už jsi dneska někoho poslal někam? Ještě je čas.",
-                "Čtvrtek je jako předkrm k jídlu, které ti stejně nebude chutnat.",
-                "Statisticky dneska uděláš nejvíc chyb. Tak do toho.",
-                "Tvá existence je redukována na čekání na pípnutí píchaček.",
-                "Už jen jeden den korporátního pekla. Pokud nepracuješ o víkendu.",
-                "Čtvrtek je den pro lidi, co už nemají co ztratit.",
-                "Tvůj mozek už dávno odešel na dovolenou. Zbytek těla ho následuje.",
-                "Právě jsi promrhal další hodinu života. A tvoje výplata? Pořád stejná.",
-                "Čtvrtek je jenom převlečená beznaděj."
-            ],
-            5: [ // Pátek
-                "Cílová rovinka, ty trosko! Už slyšíš to cinkání půllitrů?",
-                "Poslední e-mail a pak zmiz jako pára nad hrncem. Nikdo tě nechce.",
-                "Už jsi jednou nohou v baru a druhou v bezvědomí.",
-                "Páteční odpoledne: Fyzika přestává fungovat, čas se natahuje do nekonečna.",
-                "Dělej, že píšeš zprávu. Stačí deset minut a můžeš vypadnout.",
-                "Tvoje produktivita klesla na úroveň pokojové kytky. Možná i níž.",
-                "Víš, co je nejlepší na pátku? Že zítra tě nikdo neuvidí plakat v kanclu.",
-                "Právě jsi vyhrál bitvu s týdnem. Válka ale začíná v pondělí ráno.",
-                "Je čas přepnout mozek na režim 'Nekontaktovat, jsem mrtvej'.",
-                "Právě jsi odeslal poslední lež tohoto týdne. Gratulujeme.",
-                "Pátek je jediný den, kdy ti i tvůj šéf přijde skoro jako člověk.",
-                "Běž domů. Teď hned. Nikdo tě tu nedrží (kromě tvého dluhu na kreditce).",
-                "Páteční euforie je jen dočasná chemická reakce na blížící se konec.",
-                "Za hodinu už budeš vědět, proč piješ. Jako bys to nevěděl už teď.",
-                "Už jen pár vteřin a tvoje pracovní identita se rozplyne.",
-                "Pátek: Den, kdy se všichni tváří, že něco dělají, ale všichni jen scrolují.",
-                "Tvá svoboda má jméno: Sobota a Neděle. Škoda, že trvají asi pět minut.",
-                "Gratulujeme, přežil jsi další týden marnosti. Jsi hrdina, nebo blázen?",
-                "Pátek odpoledne je čas na hluboký nádech a ještě hlubší sklenici.",
-                "Padla! Zmiz, než si tě někdo všimne a dá ti práci navíc."
-            ]
+            0: { // Neděle
+                am: [
+                    "Nedělní ráno: Křehký mír před nevyhnutelnou bouří.",
+                    "Užívej si to ticho. Brzy ho nahradí pípání Teamsů.",
+                    "Snídaně v posteli? Zasloužíš si to, zítra budeš jíst u klávesnice.",
+                    "Dneska jsi pánem svého času. Už jen 24 hodin.",
+                    "V tuhle chvíli je pondělí jen mýtus. Ignoruj ho.",
+                    "Káva chutná líp, když víš, že nemusíš nic reportovat.",
+                    "Stav tvojí duše: Dočasně stabilizovaný.",
+                    "Nedělní dopoledne je jediný čas, kdy svět dává smysl.",
+                    "Zkus dneska neotevřít ani jeden pracovní mail. Odvahu!",
+                    "Tvoje peřina je v tuhle chvíli tvůj jediný bezpečný přístav.",
+                    "Neděle am: Poslední zbytek tvé lidské důstojnosti je tu.",
+                    "Vypni si mozek. Zítra ho budeš muset stejně nechat v šatně.",
+                    "Dopolední klid. Užij si ho, než začneš myslet na zítřejší agendu.",
+                    "Jsi volný jako pták. Tedy pták v kleci, co má otevřená dvířka na jeden den.",
+                    "Užij si ten pocit, že tvůj největší problém je, co si dáš k obědu.",
+                    "Neděle je dar. Pondělí je trest za to, že jsi ho přijal.",
+                    "Nic nedělat je dneska tvoje hlavní pracovní náplň.",
+                    "Tvoje tělo se regeneruje. Tvoje psychika se připravuje na náraz.",
+                    "Svět venku vypadá tak krásně, když v něm nejsou kolegové.",
+                    "Budiž světlo a budiž klid. Aspoň na pár hodin."
+                ],
+                pm: [
+                    "Nedělní odpoledne: Ta tíha na hrudi se jmenuje 'zítra je pondělí'.",
+                    "Cítíš to? To je dech tvého šéfa na tvém krku. Už se blíží.",
+                    "Čas se začíná zrychlovat. To není fyzika, to je úzkost.",
+                    "Užiješ si ty poslední hodiny, nebo je protrpíš strachem ze zítřka?",
+                    "Právě jsi začal podvědomě plánovat, jak se zítra hodit marod.",
+                    "Nedělní večer je jako poslední večeře před popravou.",
+                    "Tvoje postel tě už volá, ale ty víš, že spánek znamená pondělí.",
+                    "Statisticky vzato, tvůj stresový hormon právě dosáhl vrcholu.",
+                    "Užiješ si ten film, nebo budeš celou dobu myslet na ten nevyřízený report?",
+                    "V tuhle chvíli už tě nic nezachrání. Smrtící mechanizmus byl spuštěn.",
+                    "Nedělní úzkost: Klasika, kterou nevymaže ani pět piv.",
+                    "Zítra v 8:00 se tvoje osobnost zase změní na korporátního zombie.",
+                    "Čas běží dvakrát rychleji než v pátek odpoledne. Kruté, že?",
+                    "Zkus si namluvit, že tě ta práce baví. Možná tomu uvěříš.",
+                    "Tvoje svoboda právě odesílá dopis na rozloučenou.",
+                    "Neděle končí. Připrav se na ranní budík, tvůj nejoblíbenější zvuk.",
+                    "Tvoje hypotéka tě sleduje. Tvoje hypotéka tě potřebuje v kanclu.",
+                    "Poslední výdech klidu. Další přijde až v pátek v 16:00.",
+                    "Nedělní večer je nejdelší hodina tvého života.",
+                    "Dobrou chuť k poslední svobodné večeři. Zítra jíš u stolu."
+                ]
+            },
+            1: { // Pondělí
+                am: [
+                    "Vstávej, trosko. Tvá hypotéka se sama nezaplatí.",
+                    "Pondělní ráno: Ten pocit, když se probudíš a hned chceš umřít.",
+                    "Užiješ si dalších 40 hodin sebeklamu. Začni hned.",
+                    "Tvůj životní optimismus právě spáchal sebevraždu.",
+                    "Statisticky se právě teď nejvíc infarktuje. S chutí do toho.",
+                    "Tvá káva je hořká? Tvůj život bude dneska hořčejší.",
+                    "Vítej v očistci. Registrace proběhla úspěšně.",
+                    "Už teď vypadáš, že bys potřeboval týden dovolené.",
+                    "První e-mail a už tě svrbí ruka. Hezké ráno.",
+                    "Tvé nadšení pro práci je stejně reálné jako tvůj bonus.",
+                    "Zase tu smrdíš. A budeš tu smrdět až do pátku.",
+                    "Dívej se na tu vteřinovku. To je tvůj život v kanále.",
+                    "Čas, kdy i tvůj stín chce radši zůstat doma.",
+                    "Už jsi zkusil vypnout a zapnout svoji existenci? Škoda.",
+                    "Tvůj šéf si právě koupil jachtu. Ty máš tenhle blbej odpočet.",
+                    "Jsi jen kolečko v rezavém stroji. A dneska to skřípe.",
+                    "Tvé IQ v pondělí ráno nedosahuje ani pokojové teploty.",
+                    "Zrcadlo ti dneska ráno lhalo. Vypadáš ještě hůř.",
+                    "Úroveň tvé energie? Záporná.",
+                    "V pondělí ráno je i ticho v kanceláři agresivní."
+                ],
+                pm: [
+                    "Gratulujeme, přežil jsi ranní šok. Teď přichází odpolední agónie.",
+                    "Víkend je v nedohlednu, stejně jako tvůj smysl života.",
+                    "Cítíš tu únavu? To je tvé tělo, které se tě snaží vypnout.",
+                    "Právě jsi promrhal další hodinu života. A dostaneš za ni jen drobné.",
+                    "Čas, kdy už se ani nesnažíš skrývat svůj odpor k existenci.",
+                    "Outlook notifikace jsou jako výkřiky z pekla. Slyšíš je?",
+                    "Už jen 4 dny korporátní marnosti. Pokud tě neklepne.",
+                    "Tvá kreativita je na úrovni prázdné sešívačky.",
+                    "Tvé nohy už míří k východu, ale tvůj zadek je přikován k židli.",
+                    "Pondělní odpoledne je jako špatný horor, co nikdy nekončí.",
+                    "Jsi v polovině dne, ale na dně svých sil.",
+                    "Tvé reporty nikdo nečte. Píšeš je pro svůj vlastní pohřeb.",
+                    "Excel tě vidí. Excel tě sleduje. Excel tě nenávidí.",
+                    "Už jsi dneska ztratil veškerou naději, nebo ti kousek zbyl?",
+                    "Jediný čas, kdy ti i káva z automatu přijde jako luxus.",
+                    "Zíráš do monitoru a monitor ti vrací tvou prázdnotu.",
+                    "Další porada? Ideální čas na plánování falešné smrti.",
+                    "Tvé ego bylo ráno skartováno. Odpoledne už není ani co ničit.",
+                    "Užiješ si cestu domů v zácpě? Jasně že jo.",
+                    "Pondělí končí. Zítra to bude stejný hnus, jen v úterý."
+                ]
+            },
+            2: { // Úterý
+                am: [
+                    "Úterý je jen pondělí, kterému došel makeup.",
+                    "Druhý den utrpení. A ty si pořád myslíš, že to dáš.",
+                    "Tvá produktivita klesá rychleji než hodnota tvé práce.",
+                    "Ten pocit, když tvůj budík zní jako siréna v Černobylu.",
+                    "Stále jsi tady? Fascinující, kolik toho tvá duše vydrží.",
+                    "Dnešní cíle? Přežít do oběda a neplakat nahlas.",
+                    "Uvědomuješ si, že tenhle týden fakt jen tak neskončí?",
+                    "Tvá káva už nezabírá. Potřebuješ spíš elektrošoky.",
+                    "Dalších 8 hodin tváření se, že nejsi úplně vyhořelý.",
+                    "Úterý je nejobyčejnější den. Nikdo ho nemá rád.",
+                    "Snažíš se vypadat zaneprázdněně? Děláš to fakt blbě.",
+                    "Tvé sny o svobodě jsou stejně reálné jako tvůj slíbený plat.",
+                    "Právě jsi ztratil chuť k jídlu i k životu. Šťastné úterý.",
+                    "Jsi jen řádek v databázi, který se dá smazat klávesou Delete.",
+                    "Pracovní nadšení? To jsi nechal v minulém životě.",
+                    "Tvůj Outlook je dneska obzvlášť jedovatý. Užij si to.",
+                    "Úterní ráno: Ideální čas na to být kdekoli jinde.",
+                    "Jsi hrdina? Ne, jsi jen zaměstnanec měsíce v pekle.",
+                    "Tvé tělo je v kanclu, tvá důstojnost je v popelnici.",
+                    "Právě startuje další kolo tvé osobní tragédie."
+                ],
+                pm: [
+                    "Úterní odpoledne: Víkend je pořád jen teorie, ne realita.",
+                    "Cítíš ten tlak? To je tvé svědomí, které se ptá, kam jsi to dopracoval.",
+                    "Odpoledne už jen předstíráš činnost. My to víme.",
+                    "Tvé IQ klesá s každým 'Jak jsme na tom?' od šéfa.",
+                    "Čas, kdy i ten největší firemní optimista začíná pít.",
+                    "Právě jsi promarnil hodinu scrollováním. Tvůj šéf je pyšný.",
+                    "Tvá trpělivost je tenčí než papír v tiskárně.",
+                    "Odpolední šichta je jako návštěva u zubaře bez umrtvení.",
+                    "Zase ta samá mikrovlnka, zase ten samej hnusnej oběd.",
+                    "Už jen 3 dny korporátní šikany. Pokud přežiješ dnešek.",
+                    "Čas, kdy i moucha na zdi vypadá zajímavěji než tvá práce.",
+                    "Tvé reporty jsou plné lží a tvoje budoucnost taky.",
+                    "Zíráš do tabulek a vidíš tam svůj vlastní hrob.",
+                    "Ideální čas na lehkou existenciální krizi před odchodem.",
+                    "Jsi v polovině úterý. To je jako být v polovině trestu smrti.",
+                    "Tvůj mozek právě odeslal rezignaci. Tvé tělo ji ale nepřijalo.",
+                    "Pracovní doba je jako vězení, ale bez té zajímavé stravy.",
+                    "Tvá energie je na úrovni vybité baterky z roku 1998.",
+                    "Dneska už nic nezměníš. Zítra taky ne.",
+                    "Úterní agónie končí. Připrav se na středeční hrb."
+                ]
+            },
+            3: { // Středa
+                am: [
+                    "Středa. Hrb týdne. A ty jsi ten, co ho musí přelézt.",
+                    "Půlka týdne. Tvá duše už čeká u nejbližšího výčepu.",
+                    "Už jsi moc unavený na práci, ale moc střízlivý na rezignaci.",
+                    "Jsi v polovině cesty k zapomnění. Gratulujeme k ničemu.",
+                    "Čas, kdy začneš plánovat svou falešnou dovolenou.",
+                    "Tvůj kofeinový dluh právě dosáhl řeckých rozměrů.",
+                    "Hádanka: Má to dvě nohy a už to mělo být doma? Ty.",
+                    "Středeční ráno je jako střet s realitou v plné rychlosti.",
+                    "Už jsi dneska někoho poslal někam? Ještě je brzy.",
+                    "Tvé nadšení pro dnešek je stejně velké jako tvůj zájem o GDPR.",
+                    "Jsi jako křeček v kolečku, co zapomněl, proč vlastně běží.",
+                    "Tvůj mozek je v režimu úspory energie. Aktuální úroveň: Celer.",
+                    "Zase ty stejné tváře. Zase ty stejné kecy. Zase ta samá středa.",
+                    "Jediný čas, kdy závidíš i lidem na úřadu práce.",
+                    "Jsi v bodě, kdy už se ani nesnažíš být milý na lidi.",
+                    "Tvé pracovní nasazení? Neviditelné jako tvoje budoucí důchody.",
+                    "Dneska i tvůj pracovní stůl vypadá, že tě chce vyhodit.",
+                    "Už jen 48 hodin do momentu, kdy ti bude všechno úplně jedno.",
+                    "Tvůj smysl pro humor dneska ráno spáchal harakiri.",
+                    "Úroveň tvého utrpení? Stabilně vysoká."
+                ],
+                pm: [
+                    "Středeční odpoledne: Už jsi za hrbem, ale pád dolů bude bolet.",
+                    "Cítíš tu vůni? Ne, to není víkend. To je jen tvůj pot.",
+                    "Odpoledne, kdy i tvůj pracovní počítač chce prostě vybuchnout.",
+                    "Právě jsi promrhal čas na oběd přemýšlením o smyslu bytí.",
+                    "Už jen dva dny sebeklamu. To dáš, lháři.",
+                    "Tvá trpělivost právě odeslala oficiální výpověď.",
+                    "Odpoledne je jako nekonečná smyčka v nekonečném pekle.",
+                    "Jsi v polovině týdne, ale tvoje IQ je v polovině nuly.",
+                    "Tvé reporty dneska obzvlášť tragické. Šéf tě miluje.",
+                    "Čas, kdy začneš pít i vodu z kohoutku, abys aspoň něco cítil.",
+                    "Už jsi zvažoval, že se schováš v archivu a vylezeš až v pátek?",
+                    "Tvé tělo je v kanclu, tvá mysl je už v příštím životě.",
+                    "Středeční odpoledne: Ideální čas na to se prostě vypnout.",
+                    "Jsi jen statistická odchylka v grafu firemních nákladů.",
+                    "Práce tě osvobozuje? Ne, práce tě jen brutálně unavuje.",
+                    "Tvá energie je jako tvůj účet před výplatou. Totálně prázdný.",
+                    "Zíráš na odpočet a odpočet se ti drze směje do očí.",
+                    "Dnešní bilance? Nula úkolů splněno, tisíce vteřin promrháno.",
+                    "Středa končí. Zítra je čtvrtek, lhář všech dnů.",
+                    "Běž domů a tvař se, že tě to zítra nebude mrzet."
+                ]
+            },
+            4: { // Čtvrtek
+                am: [
+                    "Čtvrtek: Nejsmutnější ráno, protože víkend je pořád daleko.",
+                    "Už cítíš tu svobodu? Ne? To bude tím, že jsi pořád v práci.",
+                    "Čas, kdy už ani káva nedokáže přebít tvou prohlubující se depresi.",
+                    "Skoro tam jsi, ale tenhle den se potáhne jako tvůj workflow.",
+                    "Čtvrtek je nejhorší lhář. Tváří se jako naděje, ale je to dřina.",
+                    "Tvé nadšení pro dnešek je jako tvůj zájem o firemní vizi: Nulové.",
+                    "Už jen pár hodin předstírání zájmu. To zvládneš, lháři.",
+                    "Dnešní ráno: Čas, kdy i tvoje klávesnice vypadá agresivně.",
+                    "Jsi v bodě, kdy už se ani nepokoušíš pozdravit kolegy.",
+                    "Tvá kreativita je na úrovni prázdné krabice od pizzy.",
+                    "Čtvrteční dopoledne: Ideální čas na to se prostě zhroutit.",
+                    "Tvé reporty jsou dneska jen náhodná shluk písmen. Nikdo si nevšimne.",
+                    "Jsi hrdina dne? Ne, jsi jen další oběť systému.",
+                    "Tvá vnitřní energie je jako signál v metru. Prostě žádná.",
+                    "Už jsi dneska přemýšlel, že to prostě zabalíš a odejdeš středem?",
+                    "Tvůj Outlook je dneska obzvlášť jedovatý. Užij si to.",
+                    "Den, kdy i mouchy v kanceláři vypadají deprimovaně.",
+                    "Jsi jen šroubek v mašině, co už dávno totálně zrezivěl.",
+                    "Tvé tělo je v práci, tvá duše už hledá nouzový východ.",
+                    "Startuje finální fáze tvého týdenního kolapsu."
+                ],
+                pm: [
+                    "Čtvrteční odpoledne: Víkend je na dosah, ale ty jsi na dně.",
+                    "Odpoledne už jen zíráš do prázdna a doufáš v zázrak.",
+                    "Čas, kdy už se ani nesnažíš skrývat svůj odpor k lidem.",
+                    "Právě jsi promarnil hodinu plánováním víkendu, který prospíš.",
+                    "Tvé IQ právě kleslo na úroveň pokojové kytky. Možná i níž.",
+                    "Čtvrteční odpoledne je jako nekonečný tunel bez světla.",
+                    "Jsi v polovině čtvrtka. To je jako být v polovině agónie.",
+                    "Tvé reporty dneska čisté fantasy. Šéf ti to sežere.",
+                    "Čas, kdy začneš mluvit s kávovarem, protože ti jediný rozumí.",
+                    "Už jen jeden den korporátního pekla. Pokud tě neklepne.",
+                    "Tvé tělo už vypovídá službu, ale tvoje židle tě prostě nepustí.",
+                    "Odpoledne: Ideální čas na to se prostě vymazat z existence.",
+                    "Jsi jen položka v rozpočtu, co stojí víc, než reálně přináší.",
+                    "Práce tě šlechtí? Ne, práce tě jen brutálně deformuje.",
+                    "Tvá šance na povýšení je stejně reálná jako tvá energie: Neviditelná.",
+                    "Zíráš na hodiny a hodiny se ti vysmívají přímo do ksichtu.",
+                    "Dnešní výsledek? Ztráta času a zbytků tvé lidské důstojnosti.",
+                    "Čtvrtek končí. Zítra je konečně pátek, den milosti.",
+                    "Zmiz domů a modli se, abys zítra nezaspal.",
+                    "Čtvrteční večer je jen příprava na páteční simulaci práce."
+                ]
+            },
+            5: { // Pátek
+                am: [
+                    "Páteční ráno: Cílová rovinka, ty trosko! Už slyšíš bar?",
+                    "Už jsi jednou nohou v hospodě a druhou v bezvědomí.",
+                    "Dopoledne, kdy i tvůj šéf vypadá skoro jako lidská bytost.",
+                    "Posledních pár hodin sebeklamu. To už dáš i po lobotomii.",
+                    "Den, kdy se produktivita měří v počtu vypitých káv.",
+                    "Tvé nadšení pro pátek je jediná upřímná věc na tvé práci.",
+                    "Už jen pár e-mailů a pak zmiz jako pára nad hrncem.",
+                    "Čas, kdy už i tiskárna v kanclu ví, že na ni totálně kašleš.",
+                    "Jsi hrdina týdne? Ne, jsi jen náhodou přeživší.",
+                    "Tvá energie je dneska vysoká jen proto, že cítíš blízký konec.",
+                    "Páteční dopoledne: Ideální čas na to nedělat vůbec nic.",
+                    "Tvé reporty dneska nikdo nečte, všichni už jsou v myšlenkách jinde.",
+                    "Jsi jen vteřinu od totálního vypnutí. Vydrž, ty nulo.",
+                    "Tvá mysl už intenzivně řeší, kolik piv je potřeba k zapomnění.",
+                    "Už jsi dneska zkontroloval stav účtu? Pořád bída, co?",
+                    "Tvůj Outlook je dneska tichý, protože i tvoji nepřátelé jsou líní.",
+                    "Den, kdy i ranní zácpa chutná trochu po svobodě.",
+                    "Jsi jen kolečko, co se těší, až se konečně přestane točit.",
+                    "Tvé tělo je v kanclu, tvá mysl je už u prvního panáka.",
+                    "Startuje tvůj krátký, ale zasloužený útěk z reality."
+                ],
+                pm: [
+                    "Páteční odpoledne: Fyzika přestává fungovat, čas se natahuje.",
+                    "Čas, kdy už se ani nepokoušíš vypadat inteligentně.",
+                    "Právě jsi promrhal poslední hodinu týdne. Dobrá práce.",
+                    "Tvé IQ je na nule, ale tvoje radost na maximu. Ubožáku.",
+                    "Svoboda je na dosah, ale ty jsi už příliš unavený na radost.",
+                    "Jsi skoro volný! Tedy na 48 hodin, než tě zase v pondělí zavřou.",
+                    "Tvé reporty jsou odeslány. Nikdo je nikdy v životě neotevře.",
+                    "Čas, kdy už i tvůj stůl vypadá, že ti přeje hezký víkend.",
+                    "Užij si to, dokud můžeš. Pondělí se tiše plíží za rohem.",
+                    "Tvé tělo už opustilo budovu, zbytek tě bude brzy následovat.",
+                    "Odpoledne: Ideální čas na to zapomenout, jak se vlastně jmenuješ.",
+                    "Jsi vítěz týdne! Ale tvá trofej je jen kocovina v sobotu dopoledne.",
+                    "Práce končí, utrpení se jen na chvíli milosrdně přerušuje.",
+                    "Tvá energie je jako supernova těsně před výbuchem.",
+                    "Zíráš na dveře a ty dveře jsou v tuhle chvíli tvůj jediný bůh.",
+                    "Dnešní bilance? Přežito. To je jediné, co se počítá.",
+                    "Pátek končí. Vítej v krátké iluzi zvané víkend.",
+                    "Běž pít. Potřebuješ to v tuhle chvíli víc, než si myslíš.",
+                    "Poslední vteřiny tvé korporátní identity. 3, 2, 1...",
+                    "Zhluboka se nadechni. To, co cítíš, je čistý kyslík bez Teamsů."
+                ],
+                night: [
+                    "PADLA! Utíkej a neohlížej se, nebo tě někdo uvidí.",
+                    "Víkend začíná! Tvá důstojnost se ti právě vrátila ze šatny.",
+                    "Jsi na svobodě! Tedy aspoň do nedělní úzkosti.",
+                    "Tento moment je vykoupen krví, potem a nudnými poradami.",
+                    "Právě jsi přestal být 'zdrojem' a stal ses 'člověkem'.",
+                    "Zapomeň hesla, zapomeň jména kolegů, zapomeň na Excel.",
+                    "Tvé tělo právě přeplo na nouzový režim: Pivo a spánek.",
+                    "První panák na počest tvé svobody. Zasloužíš si ho, nulo.",
+                    "Outlook odinstalován (v tvé hlavě). Hezký večer.",
+                    "Jsi volný! Svět je tvůj, aspoň na příštích 60 hodin.",
+                    "Tvá unavená duše právě dostala první pomoc.",
+                    "Páteční večer: Jediný čas v týdnu, kdy svět dává smysl.",
+                    "Užij si ten pocit, že tvůj šéf v tuto chvíli neexistuje.",
+                    "Před tebou je jen prázdno, klid a nulová zodpovědnost.",
+                    "Vypni mozek. V pondělí ho budeš muset stejně nechat v šatně.",
+                    "Cítíš tu lehkost? To je tvé ego, co se znovu nafukuje.",
+                    "Dneska neexistuje žádné 'ASAP'. Jen 'ASAP domů'.",
+                    "Gratulujeme k úspěšnému útěku z vězení zvaného office.",
+                    "Tvá postel na tebe čeká, ale hospoda tě volá víc.",
+                    "Víkendový mód aktivován. System error: Work not found."
+                ]
+            },
+            6: { // Sobota
+                am: [
+                    "Sobota dopoledne: Jsi naživu a nikdo po tobě nic nechce. Zázrak.",
+                    "Spánek do desíti? To je nejlepší investice tvého života.",
+                    "Dneska jsi králem světa. Tedy aspoň tvého obýváku.",
+                    "Žádné budíky, jen čistá radost z existence.",
+                    "V tuhle chvíli je práce jen vzdálená noční můra.",
+                    "Užívej si ten pocit prázdné hlavy. Zasloužíš si to.",
+                    "Káva v pyžamu chutná jako vítězství nad systémem.",
+                    "Dneska tě nikdo nebude hodnotit podle KPI.",
+                    "Sobotní ráno: Ideální čas na to nedělat vůbec nic.",
+                    "Jsi volný! Užij si tu krátkou amnestii.",
+                    "Tvoje tělo ti děkuje za to, že ho dneska nenutíš do metra.",
+                    "Svoboda smrdí jako čerstvé rohlíky a klid.",
+                    "Vypni si notifikace. Svět se dneska nezboří bez tebe.",
+                    "Dneska jsi člověk, ne lidský zdroj.",
+                    "Už jsi zapomněl heslo do počítače? Výborně.",
+                    "Sobota am: Vrchol tvé týdenní křivky štěstí.",
+                    "Užij si ten luxus nevědět, co je za den.",
+                    "Tvoje peřina je dneska tvůj nejlepší kamarád.",
+                    "Nikdo ti dneska neřekne 'ASAP'. Dýchej.",
+                    "Užívej si to. V pondělí to budeš potřebovat jako vzpomínku."
+                ],
+                pm: [
+                    "Sobota odpoledne: Čas na zábavu, na kterou jsi moc unavený.",
+                    "Už jsi v polovině víkendu. Začni panikařit... nebo radši ne.",
+                    "Dneska večer budeš slavit, že jsi přežil další týden.",
+                    "Sobotní chill je nejvíc, co ti moderní společnost může nabídnout.",
+                    "Neřeš, co bude zítra. Zítra je až za tisíc let.",
+                    "Právě jsi promrhal odpoledne nicneděláním. A bylo to skvělé.",
+                    "Jsi pánem svého osudu. Tedy aspoň do nedělního večera.",
+                    "Sobotní odpoledne: Ideální čas na to se prostě ztratit v seriálu.",
+                    "Tvoje svědomí ti říká, abys dělal něco užitečného. Ignoruj ho.",
+                    "Svět je tvůj. Tedy aspoň ta část, kam dojdeš pěšky.",
+                    "Užij si tu iluzi, že tenhle stav bude trvat navždy.",
+                    "Dneska se nepočítají kalorie ani promarněné hodiny.",
+                    "Sobota pm: Čas na to být přesně tím, kým chceš být.",
+                    "Vypni zprávy, zapni pohodu. Práce neexistuje.",
+                    "Tvoje unavené svaly se konečně uvolnily. Neruš je.",
+                    "Užívej si ten pocit, že tvůj největší stres je, co si pustíš.",
+                    "Sobota je srdce týdne. Nech ho v klidu bít.",
+                    "Dneska jsi hrdina, co zdolal horu 'Pracovní týden'.",
+                    "Užívej si ten klid před nedělní bouří úzkosti.",
+                    "Sobota končí. Ale pořád máš před sebou celou neděli!"
+                ]
+            }
         };
-
-        const db_weekend = [
-            "Užívej si to, dokud můžeš. Pondělí se tiše plíží hned za rohem.", 
-            "Nedělní večer – ideální čas na lehkou existenciální krizi.",
-            "Víkend je jako dovolená, ale s brutálně rychlým přetáčením.",
-            "Sobota ráno: Jediný čas, kdy ticho není podezřelé.",
-            "Dneska nemusíš dělat nic. A děláš to skvěle.",
-            "Odpočívej. Pondělní schůzky se samy nenaplánují.",
-            "Víkend je příliš krátký na to, abys o něm přemýšlel.",
-            "Nedělní oběd je bod zlomu. Pak už je to jen pád do pondělí.",
-            "Jsi v bezpečné zóně. Práce sem nesmí.",
-            "Tvé e-maily teď nikoho nezajímají. Ani tebe.",
-            "Nedělní deprese je přirozený stav moderního člověka.",
-            "Víkend je iluze, která trvá přesně 48 hodin. Čas běží.",
-            "Právě teď jsi nejšťastnější verze sebe sama. To je smutný, co?"
-        ];
 
         let currentMsgId = -1;
 
@@ -436,7 +654,7 @@
             }
 
             if (le <= ls) {
-                le = ls + 1800; 
+                le = ls + 30 * 60; 
                 config.lunchEnd = secondsToTime(le);
                 document.getElementById('lunchEnd').value = config.lunchEnd;
             }
@@ -492,13 +710,28 @@
 
         function update() {
             const now = new Date();
-            const day = now.getDay(); // 0 (Sun) to 6 (Sat)
-            const curSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+            const day = now.getDay(); 
+            const hour = now.getHours();
+            const curSec = hour * 3600 + now.getMinutes() * 60 + now.getSeconds();
             const sEnd = timeToSeconds(config.workEnd);
             const isWeekend = (day === 0 || day === 6 || (day === 5 && curSec >= sEnd));
-            const messageSeed = Math.floor(Date.now() / 15000); // Každých 15s nová hláška
+            const messageSeed = Math.floor(Date.now() / 15000); 
             
             document.getElementById('day-badge').innerText = dayNames[day];
+
+            let pool;
+            let periodId;
+
+            if (day === 5 && curSec >= sEnd) {
+                // Pátek večer (po směně)
+                pool = dailyQuotes[5].night;
+                periodId = 999;
+            } else {
+                const period = hour < 12 ? 'am' : 'pm';
+                const daySet = dailyQuotes[day] || dailyQuotes[1];
+                pool = daySet[period];
+                periodId = (period === 'pm' ? 100 : 0);
+            }
 
             if (isWeekend) {
                 const mon = new Date(now); mon.setDate(now.getDate() + ((1 + 7 - day) % 7 || 7));
@@ -506,8 +739,9 @@
                 const rem = Math.floor((mon - now) / 1000);
                 document.getElementById('counter').innerText = formatTime(rem, 86400);
                 document.getElementById('total-seconds').innerText = `${rem.toLocaleString()} vteřin`;
-                setStatusMessage(db_weekend[messageSeed % db_weekend.length], (messageSeed % db_weekend.length) + 5000); 
                 document.getElementById('progress-bar').style.width = "100%";
+                document.getElementById('label-passed').innerText = `Užívej volno`;
+                document.getElementById('label-remaining').innerText = `Do pondělí`;
             } else {
                 let rem = (5 - day) * (config.workHours * 3600);
                 const ws = timeToSeconds(config.workStart);
@@ -526,11 +760,10 @@
                 document.getElementById('progress-bar').style.width = prog + "%";
                 document.getElementById('label-passed').innerText = `Stav: ${prog.toFixed(1)}%`;
                 document.getElementById('label-remaining').innerText = `Zbývá: ${(100-prog).toFixed(1)}%`;
-                
-                // Výběr hlášky podle dne v týdnu (1=Pon, 5=Pá)
-                const pool = dailyQuotes[day] || dailyQuotes[1];
-                setStatusMessage(pool[messageSeed % pool.length], (day * 100) + (messageSeed % pool.length));
             }
+            
+            // Nastavení toxické hlášky
+            setStatusMessage(pool[messageSeed % pool.length], (day * 200) + periodId + (messageSeed % pool.length));
         }
 
         let isDark = localStorage.getItem('theme') !== 'light';
